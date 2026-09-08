@@ -29,6 +29,14 @@ body {
   }
 }
 
+@layer utilities {
+  .text-gray-400 { color: #475569; }
+  .text-gray-500 { color: #64748b; }
+  .text-gray-600 { color: #475569; }
+  .placeholder-gray-400::placeholder,
+  .placeholder-gray-500::placeholder { color: #64748b; }
+}
+
 /* Instrument hotspot ripple */
 @keyframes ripple {
   0% { transform: scale(1); opacity: 1; }
