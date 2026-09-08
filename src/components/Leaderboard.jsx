@@ -1,4 +1,3 @@
-const MEDALS = ['🥇', '🥈', '🥉']
 const RANK_COLORS = ['#fbbf24', '#9ca3af', '#f97316']
 
 export default function Leaderboard({ players, title = "Leaderboard", final = false }) {
@@ -27,13 +26,13 @@ export default function Leaderboard({ players, title = "Leaderboard", final = fa
             }}
           >
             <div className="text-2xl w-8 text-center">
-              {i < 3 ? MEDALS[i] : <span className="text-gray-500 font-mono text-sm">#{i + 1}</span>}
+              {i < 3 ? <span className="text-sm font-bold" style={{ color: RANK_COLORS[i] }}><span className="sr-only">Rank </span>{i + 1}</span> : <span className="text-gray-500 font-mono text-sm">#{i + 1}</span>}
             </div>
             <div className="text-2xl">{player.avatar}</div>
             <div className="flex-1 min-w-0">
               <div className="font-semibold truncate">{player.name}</div>
               {player.streak > 1 && (
-                <div className="text-xs text-orange-400">🔥 {player.streak} streak</div>
+                <div className="text-xs text-orange-400">{player.streak} streak</div>
               )}
             </div>
             <div

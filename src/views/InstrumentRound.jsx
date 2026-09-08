@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { instrumentRounds } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
+import { Brain, Check, Music2, Sparkles, Zap } from 'lucide-react'
 
 export default function InstrumentRound({ roundIndex, playerId, playerAvatar, playerName, onAnswer, gameState, isAdmin }) {
   const round = instrumentRounds[roundIndex]
@@ -114,7 +115,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
               }}
             >
               <div className="bg-hunt-purple text-white text-xs px-2 py-1 rounded-full flex items-center gap-1 whitespace-nowrap shadow-lg">
-                <span>{inst.emoji}</span>
+                <Music2 size={14} />
                 <span>{inst.name}</span>
                 {foundInstruments[inst.id] && <span className="text-green-300">✓</span>}
               </div>
@@ -142,7 +143,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
           <div className="flex gap-3">
             {round.instruments.map(inst => (
               <div key={inst.id} className="flex items-center gap-1 text-sm">
-                <span>{inst.emoji}</span>
+                <Music2 size={14} />
                 <span className={foundInstruments[inst.id] ? 'line-through text-gray-500' : 'text-slate-800'}>
                   {inst.name}
                 </span>
@@ -156,16 +157,16 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
         {revealed && (
           <div className="space-y-3">
             <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
-              <div className="text-xs text-hunt-purple font-semibold mb-2">🧠 Psychology Fact</div>
+              <div className="text-xs text-hunt-purple font-semibold mb-2 flex items-center gap-1"><Brain size={14} /> Psychology Fact</div>
               <p className="text-sm text-gray-300">{round.psychFact}</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="card" style={{ border: '1px solid #fbbf2444', background: '#fbbf2411' }}>
-                <div className="text-xs text-hunt-yellow font-semibold mb-2">✨ Fun Fact</div>
+                <div className="text-xs text-hunt-yellow font-semibold mb-2 flex items-center gap-1"><Sparkles size={14} /> Fun Fact</div>
                 <p className="text-sm text-gray-300">{round.funFact}</p>
               </div>
               <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
-                <div className="text-xs text-hunt-cyan font-semibold mb-2">😲 Surprising Fact</div>
+                <div className="text-xs text-hunt-cyan font-semibold mb-2 flex items-center gap-1"><Zap size={14} /> Surprising Fact</div>
                 <p className="text-sm text-gray-300">{round.surprisingFact}</p>
               </div>
             </div>
@@ -174,7 +175,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
 
         {submitted && (
           <div className="card text-center text-green-400 font-semibold">
-            ✅ You found an instrument! Watch for more...
+            <span className="inline-flex items-center gap-2"><Check size={18} /> You found an instrument! Watch for more...</span>
           </div>
         )}
       </div>

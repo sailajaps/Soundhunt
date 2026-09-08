@@ -1,11 +1,12 @@
 import { useMemo } from 'react'
+import { Drum, Guitar, Mic2, Music2, Piano } from 'lucide-react'
 
-const NOTES = ['🎵', '🎶', '♪', '♫', '🎸', '🎹', '🎺', '🎻', '🥁']
+const NOTES = [Music2, Music2, Guitar, Piano, Mic2, Drum]
 
 export default function FloatingNotes() {
   const notes = useMemo(() => Array.from({ length: 12 }, (_, i) => ({
     id: i,
-    note: NOTES[i % NOTES.length],
+    Icon: NOTES[i % NOTES.length],
     left: `${(i * 8.3) % 100}%`,
     duration: `${8 + (i % 6)}s`,
     delay: `${(i * 0.7) % 5}s`,
@@ -26,7 +27,7 @@ export default function FloatingNotes() {
             opacity: 0.15,
           }}
         >
-          {n.note}
+          <n.Icon size={24} strokeWidth={1.5} />
         </div>
       ))}
     </div>

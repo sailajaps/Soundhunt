@@ -1,4 +1,5 @@
 import MusicPreference from '../components/MusicPreference'
+import { ListMusic, Search, Target } from 'lucide-react'
 
 export default function PlayerLobby({ name, avatar, players = [], roomCode, preferenceAnswered, onPreference }) {
   return (
@@ -46,15 +47,15 @@ export default function PlayerLobby({ name, avatar, players = [], roomCode, pref
         </div>
 
         <div className="card text-center">
-          <div className="text-2xl mb-2">🎯</div>
+          <Target className="mx-auto mb-2 text-hunt-purple" size={28} />
           <p className="text-sm text-gray-300 font-medium">How to play</p>
           <div className="mt-3 space-y-2 text-left">
             <div className="flex gap-2 text-sm text-gray-400">
-              <span>🔍</span>
+              <Search size={17} className="shrink-0 text-hunt-purple" />
               <span>Rounds 1–3: Spot hidden instruments in images. First to find one gets 200 pts!</span>
             </div>
             <div className="flex gap-2 text-sm text-gray-400">
-              <span>🎵</span>
+              <ListMusic size={17} className="shrink-0 text-hunt-cyan" />
               <span>Rounds 4–6: Decode emoji clues to name a music psychology effect. First correct = 300 pts!</span>
             </div>
           </div>

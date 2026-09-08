@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { emojiRounds } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
+import { Brain, CheckCircle2, CircleX, ListMusic, Sparkles, Target, Zap } from 'lucide-react'
 
 export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }) {
   const emojiIndex = roundIndex - 3 // rounds 3,4,5 map to emojiRounds 0,1,2
@@ -32,7 +33,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
         <div className="flex items-center justify-between">
           <div>
             <div className="text-xs text-gray-400">Round {roundIndex + 1} of 6</div>
-            <h2 className="text-xl font-bold">Decode the Emojis 🎵</h2>
+            <h2 className="text-xl font-bold flex items-center gap-2"><ListMusic className="text-hunt-cyan" size={20} /> Decode the Emojis</h2>
           </div>
           <div className="card py-1 px-3 text-center">
             <div className="text-xs text-gray-400">Score</div>
@@ -87,7 +88,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
               disabled={!guess.trim()}
               className="w-full btn-primary py-3 text-lg"
             >
-              Submit Answer 🎯
+              <span className="inline-flex items-center gap-2"><Target size={18} /> Submit Answer</span>
             </button>
             <p className="text-center text-gray-500 text-xs">First correct answer = 300 pts!</p>
           </div>
@@ -102,7 +103,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
               background: result ? '#10b98111' : '#ef444411'
             }}
           >
-            <div className="text-4xl mb-2">{result ? '✅' : '❌'}</div>
+            {result ? <CheckCircle2 className="mx-auto mb-2 text-hunt-green" size={40} /> : <CircleX className="mx-auto mb-2 text-hunt-red" size={40} />}
             <div className="font-bold text-lg">{result ? 'Correct!' : 'Not quite...'}</div>
             <div className="text-gray-400 text-sm mt-1">
               {result ? '+300 pts added to your score!' : `Your answer: "${guess}"`}
@@ -115,16 +116,16 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
         {revealed && (
           <div className="space-y-3">
             <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
-              <div className="text-xs text-hunt-purple font-semibold mb-2">🧠 Psychology Fact</div>
+              <div className="text-xs text-hunt-purple font-semibold mb-2 flex items-center gap-1"><Brain size={14} /> Psychology Fact</div>
               <p className="text-sm text-gray-300">{round.psychFact}</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="card" style={{ border: '1px solid #fbbf2444', background: '#fbbf2411' }}>
-                <div className="text-xs text-hunt-yellow font-semibold mb-2">✨ Fun Fact</div>
+                <div className="text-xs text-hunt-yellow font-semibold mb-2 flex items-center gap-1"><Sparkles size={14} /> Fun Fact</div>
                 <p className="text-sm text-gray-300">{round.funFact}</p>
               </div>
               <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
-                <div className="text-xs text-hunt-cyan font-semibold mb-2">😲 Surprising Fact</div>
+                <div className="text-xs text-hunt-cyan font-semibold mb-2 flex items-center gap-1"><Zap size={14} /> Surprising Fact</div>
                 <p className="text-sm text-gray-300">{round.surprisingFact}</p>
               </div>
             </div>

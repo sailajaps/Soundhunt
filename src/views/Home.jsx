@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ArrowLeft, ArrowRight, Crown, Gamepad2, Target } from 'lucide-react'
 import FloatingNotes from '../components/FloatingNotes'
 
 export default function Home({ onAdmin, onPlayer }) {
@@ -59,7 +60,7 @@ export default function Home({ onAdmin, onPlayer }) {
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-10">
-          <div className="text-6xl mb-3">🎯</div>
+          <Target className="mx-auto mb-3 text-hunt-purple" size={56} strokeWidth={1.7} />
           <h1 className="text-5xl font-bold mb-2" style={{
             background: 'linear-gradient(90deg, #7c3aed, #ec4899, #06b6d4)',
             WebkitBackgroundClip: 'text',
@@ -77,13 +78,13 @@ export default function Home({ onAdmin, onPlayer }) {
               className="w-full btn-primary py-4 text-lg flex items-center justify-center gap-3"
               style={{ background: 'linear-gradient(135deg, #7c3aed, #ec4899)' }}
             >
-              🎮 Join a Game
+              <Gamepad2 size={20} /> Join a Game
             </button>
             <button
               onClick={() => setMode('admin')}
               className="w-full btn-secondary py-4 text-lg flex items-center justify-center gap-3"
             >
-              👑 Admin — Start a Game
+              <Crown size={20} /> Admin — Start a Game
             </button>
           </div>
         )}
@@ -135,9 +136,9 @@ export default function Home({ onAdmin, onPlayer }) {
               disabled={loading}
               className="w-full btn-primary"
             >
-              {loading ? 'Joining...' : 'Join Game →'}
+              {loading ? 'Joining...' : <><span>Join Game</span><ArrowRight size={18} /></>}
             </button>
-            <button onClick={() => { setMode(null); setError('') }} className="w-full text-gray-500 text-sm">← Back</button>
+            <button onClick={() => { setMode(null); setError('') }} className="w-full text-gray-500 text-sm flex items-center justify-center gap-2"><ArrowLeft size={16} /> Back</button>
           </div>
         )}
 
@@ -161,9 +162,9 @@ export default function Home({ onAdmin, onPlayer }) {
               disabled={loading}
               className="w-full btn-primary"
             >
-              {loading ? 'Creating Game...' : 'Create Game →'}
+              {loading ? 'Creating Game...' : <><span>Create Game</span><ArrowRight size={18} /></>}
             </button>
-            <button onClick={() => { setMode(null); setError('') }} className="w-full text-gray-500 text-sm">← Back</button>
+            <button onClick={() => { setMode(null); setError('') }} className="w-full text-gray-500 text-sm flex items-center justify-center gap-2"><ArrowLeft size={16} /> Back</button>
           </div>
         )}
       </div>

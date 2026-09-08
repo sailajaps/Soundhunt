@@ -1,5 +1,6 @@
 import Confetti from '../components/Confetti'
 import Leaderboard from '../components/Leaderboard'
+import { Brain, Heart, Moon, RotateCcw, Search, Trophy, Waves, Zap } from 'lucide-react'
 
 export default function Winner({ players, isAdmin, onPlayAgain }) {
   const sorted = [...players].sort((a, b) => (b.score || 0) - (a.score || 0))
@@ -16,7 +17,7 @@ export default function Winner({ players, isAdmin, onPlayAgain }) {
             border: '1px solid #7c3aed66'
           }}
         >
-          <div className="text-7xl mb-4 animate-bounce">🏆</div>
+          <Trophy className="mx-auto mb-4 animate-bounce text-hunt-yellow" size={72} />
           <div className="text-5xl mb-3">{winner?.avatar}</div>
           <h1 className="text-3xl font-bold mb-1">{winner?.name}</h1>
           <p className="text-gray-400 mb-3">wins SoundHunt!</p>
@@ -31,20 +32,20 @@ export default function Winner({ players, isAdmin, onPlayAgain }) {
         <Leaderboard players={players} title="Final Standings" final />
 
         <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
-          <div className="text-sm font-semibold text-hunt-cyan mb-2">🎓 What you learned today</div>
+          <div className="text-sm font-semibold text-hunt-cyan mb-2 flex items-center gap-2"><Brain size={17} /> What you learned today</div>
           <ul className="space-y-2 text-sm text-gray-300">
-            <li>🔍 Music therapy reduces anxiety by up to 65%</li>
-            <li>🧠 Playing music is the most whole-brain activity humans do</li>
-            <li>❤️ Live music releases oxytocin — the bonding hormone</li>
-            <li>😴 Binaural beats can shift your brain from alert to relaxed</li>
-            <li>🏃 Music during exercise can boost endurance by 15%</li>
-            <li>😢 Minor keys mimic the acoustics of human crying</li>
+            <li className="flex items-center gap-2"><Search size={15} className="text-hunt-purple" /> Music therapy reduces anxiety by up to 65%</li>
+            <li className="flex items-center gap-2"><Brain size={15} className="text-hunt-purple" /> Playing music is the most whole-brain activity humans do</li>
+            <li className="flex items-center gap-2"><Heart size={15} className="text-hunt-pink" /> Live music releases oxytocin, the bonding hormone</li>
+            <li className="flex items-center gap-2"><Moon size={15} className="text-hunt-cyan" /> Binaural beats can shift your brain from alert to relaxed</li>
+            <li className="flex items-center gap-2"><Zap size={15} className="text-hunt-yellow" /> Music during exercise can boost endurance by 15%</li>
+            <li className="flex items-center gap-2"><Waves size={15} className="text-hunt-cyan" /> Minor keys mimic the acoustics of human crying</li>
           </ul>
         </div>
 
         {isAdmin && (
           <button onClick={onPlayAgain} className="w-full btn-secondary py-3">
-            🔄 Play Again
+            <span className="inline-flex items-center gap-2"><RotateCcw size={18} /> Play Again</span>
           </button>
         )}
       </div>

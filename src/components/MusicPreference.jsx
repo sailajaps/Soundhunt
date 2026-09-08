@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Music2 } from 'lucide-react'
 
 const OPTIONS = [
   'I love music and listen every day',
@@ -13,7 +14,7 @@ export default function MusicPreference({ answered, onAnswer }) {
   if (answered) {
     return (
       <div className="card text-center" style={{ border: '1px solid #10b98144', background: '#10b98111' }}>
-        <div className="text-2xl mb-2">🎵</div>
+        <Music2 className="mx-auto mb-2 text-hunt-cyan" size={28} />
         <p className="font-semibold text-green-300">Music profile complete!</p>
         <p className="text-gray-400 text-sm mt-1">+100 starter points added</p>
       </div>

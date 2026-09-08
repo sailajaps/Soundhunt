@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Target } from 'lucide-react'
 import { useGameState } from './hooks/useGameState'
 import FloatingNotes from './components/FloatingNotes'
 import Home from './views/Home'
@@ -122,7 +123,7 @@ export default function App() {
       <div className="min-h-screen flex items-center justify-center">
         <FloatingNotes />
         <div className="text-center relative z-10">
-          <div className="text-4xl mb-4 animate-pulse">🎯</div>
+          <Target className="mx-auto mb-4 animate-pulse text-hunt-purple" size={40} />
           <p className="text-gray-400">Connecting to SoundHunt...</p>
         </div>
       </div>
