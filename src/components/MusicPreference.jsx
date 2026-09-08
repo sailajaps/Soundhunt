@@ -34,7 +34,7 @@ export default function MusicPreference({ answered, onAnswer }) {
             onClick={() => setSelected(option)}
             className="w-full text-left px-3 py-2 rounded-xl text-sm transition-all"
             style={{
-              background: selected === option ? '#7c3aed33' : '#12122a',
+              background: selected === option ? '#7c3aed12' : '#ffffff',
               border: selected === option ? '2px solid #7c3aed' : '2px solid #1e1e4a'
             }}
           >

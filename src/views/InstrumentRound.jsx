@@ -143,7 +143,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
             {round.instruments.map(inst => (
               <div key={inst.id} className="flex items-center gap-1 text-sm">
                 <span>{inst.emoji}</span>
-                <span className={foundInstruments[inst.id] ? 'line-through text-gray-500' : 'text-white'}>
+                <span className={foundInstruments[inst.id] ? 'line-through text-gray-500' : 'text-slate-800'}>
                   {inst.name}
                 </span>
                 {foundInstruments[inst.id] && <span className="text-green-400">✓</span>}
@@ -154,9 +154,21 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
 
         {/* Psych fact on reveal */}
         {revealed && (
-          <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
-            <div className="text-xs text-hunt-purple font-semibold mb-2">🧠 Psychology Fact</div>
-            <p className="text-sm text-gray-300">{round.psychFact}</p>
+          <div className="space-y-3">
+            <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
+              <div className="text-xs text-hunt-purple font-semibold mb-2">🧠 Psychology Fact</div>
+              <p className="text-sm text-gray-300">{round.psychFact}</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="card" style={{ border: '1px solid #fbbf2444', background: '#fbbf2411' }}>
+                <div className="text-xs text-hunt-yellow font-semibold mb-2">✨ Fun Fact</div>
+                <p className="text-sm text-gray-300">{round.funFact}</p>
+              </div>
+              <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
+                <div className="text-xs text-hunt-cyan font-semibold mb-2">😲 Surprising Fact</div>
+                <p className="text-sm text-gray-300">{round.surprisingFact}</p>
+              </div>
+            </div>
           </div>
         )}
 

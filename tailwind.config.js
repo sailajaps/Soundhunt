@@ -8,9 +8,9 @@ export default {
       },
       colors: {
         hunt: {
-          bg: '#0a0a14',
-          card: '#12122a',
-          border: '#1e1e4a',
+          bg: '#f5f7fb',
+          card: '#ffffff',
+          border: '#dbe2ee',
           purple: '#7c3aed',
           pink: '#ec4899',
           cyan: '#06b6d4',

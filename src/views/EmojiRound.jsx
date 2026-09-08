@@ -74,7 +74,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
                   onClick={() => setGuess(option)}
                   className="w-full text-left px-4 py-3 rounded-xl transition-all"
                   style={{
-                    background: guess === option ? '#7c3aed33' : '#12122a',
+                    background: guess === option ? '#7c3aed12' : '#ffffff',
                     border: guess === option ? '2px solid #7c3aed' : '2px solid #1e1e4a'
                   }}
                 >
@@ -113,9 +113,21 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
 
         {/* Psych Fact on reveal */}
         {revealed && (
-          <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
-            <div className="text-xs text-hunt-purple font-semibold mb-2">🧠 Psychology Fact</div>
-            <p className="text-sm text-gray-300">{round.psychFact}</p>
+          <div className="space-y-3">
+            <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
+              <div className="text-xs text-hunt-purple font-semibold mb-2">🧠 Psychology Fact</div>
+              <p className="text-sm text-gray-300">{round.psychFact}</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="card" style={{ border: '1px solid #fbbf2444', background: '#fbbf2411' }}>
+                <div className="text-xs text-hunt-yellow font-semibold mb-2">✨ Fun Fact</div>
+                <p className="text-sm text-gray-300">{round.funFact}</p>
+              </div>
+              <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
+                <div className="text-xs text-hunt-cyan font-semibold mb-2">😲 Surprising Fact</div>
+                <p className="text-sm text-gray-300">{round.surprisingFact}</p>
+              </div>
+            </div>
           </div>
         )}
 

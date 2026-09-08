@@ -9,8 +9,8 @@
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  background: #0a0a14;
-  color: #fff;
+  background: #f5f7fb;
+  color: #172033;
   min-height: 100vh;
 }
 
@@ -19,13 +19,13 @@ body {
     @apply bg-hunt-purple hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer;
   }
   .btn-secondary {
-    @apply bg-hunt-card hover:bg-hunt-border text-white font-semibold px-6 py-3 rounded-xl border border-hunt-border transition-all duration-200 active:scale-95 cursor-pointer;
+    @apply bg-hunt-card hover:bg-slate-50 text-slate-800 font-semibold px-6 py-3 rounded-xl border border-hunt-border transition-all duration-200 active:scale-95 cursor-pointer;
   }
   .card {
     @apply bg-hunt-card border border-hunt-border rounded-2xl p-6;
   }
   .input {
-    @apply bg-hunt-bg border border-hunt-border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-hunt-purple w-full transition-colors;
+    @apply bg-white border border-hunt-border rounded-xl px-4 py-3 text-slate-800 placeholder-gray-400 focus:outline-none focus:border-hunt-purple w-full transition-colors;
   }
 }
 

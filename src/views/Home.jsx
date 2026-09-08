@@ -110,7 +110,7 @@ export default function Home({ onAdmin, onPlayer }) {
                     onClick={() => setAvatar(a)}
                     className="text-2xl p-2 rounded-xl transition-all"
                     style={{
-                      background: avatar === a ? '#7c3aed33' : '#12122a',
+                      background: avatar === a ? '#7c3aed12' : '#ffffff',
                       border: avatar === a ? '2px solid #7c3aed' : '2px solid #1e1e4a'
                     }}
                   >
