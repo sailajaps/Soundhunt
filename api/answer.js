@@ -12,6 +12,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
   const { room, playerId, playerName, playerAvatar, roundIndex, instrumentId, guess, correct } = req.body
+  const { preference } = req.body
 
   if (!room || !playerId) return res.status(400).json({ error: 'Missing fields' })
 
@@ -19,11 +20,21 @@ export default async function handler(req, res) {
   if (!state) return res.status(404).json({ error: 'Room not found' })
 
   const updated = { ...state }
+  if (!updated.preferences) updated.preferences = {}
   if (!updated.answers) updated.answers = {}
   if (!updated.answers[roundIndex]) updated.answers[roundIndex] = {}
   if (!updated.foundInstruments) updated.foundInstruments = {}
 
   let pointsEarned = 0
+
+  if (preference) {
+    if (updated.preferences[playerId]) {
+      return res.status(200).json({ success: false, message: 'Preference already saved', points: 0 })
+    }
+
+    updated.preferences[playerId] = { name: playerName, preference, points: 100 }
+    pointsEarned = 100
+  }
 
   // Instrument round (rounds 0-2)
   if (instrumentId) {

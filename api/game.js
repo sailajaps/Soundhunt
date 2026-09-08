@@ -43,6 +43,7 @@ export default async function handler(req, res) {
         currentRound: 0,
         players: [],
         answers: {},
+        preferences: {},
         foundInstruments: {},
         createdAt: Date.now()
       }
@@ -87,6 +88,7 @@ export default async function handler(req, res) {
         currentRound: 0,
         players: state.players.map(p => ({ ...p, score: 0, streak: 0 })),
         answers: {},
+        preferences: {},
         foundInstruments: {},
         createdAt: Date.now()
       }

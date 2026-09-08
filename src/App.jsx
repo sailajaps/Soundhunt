@@ -52,6 +52,8 @@ export default function App() {
     })
   }
 
+  const handlePreference = (preference) => handleAnswer({ preference })
+
   const handlePlayAgain = () => {
     updateState({ action: 'reset' })
   }
@@ -72,7 +74,16 @@ export default function App() {
     const players = gameState.players || []
 
     if (phase === 'lobby') {
-      return <PlayerLobby name={playerName} avatar={playerAvatar} players={players} roomCode={roomCode} />
+      return (
+        <PlayerLobby
+          name={playerName}
+          avatar={playerAvatar}
+          players={players}
+          roomCode={roomCode}
+          preferenceAnswered={Boolean(gameState.preferences?.[playerId])}
+          onPreference={handlePreference}
+        />
+      )
     }
 
     if (phase === 'ended') {

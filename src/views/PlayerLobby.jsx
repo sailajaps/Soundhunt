@@ -1,4 +1,6 @@
-export default function PlayerLobby({ name, avatar, players = [], roomCode }) {
+import MusicPreference from '../components/MusicPreference'
+
+export default function PlayerLobby({ name, avatar, players = [], roomCode, preferenceAnswered, onPreference }) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-sm space-y-6">
@@ -12,6 +14,8 @@ export default function PlayerLobby({ name, avatar, players = [], roomCode }) {
           <div className="text-xs text-gray-400 mb-1">Room Code</div>
           <div className="text-4xl font-mono font-bold text-hunt-cyan">{roomCode}</div>
         </div>
+
+        <MusicPreference answered={preferenceAnswered} onAnswer={onPreference} />
 
         <div className="card">
           <div className="flex items-center justify-between mb-4">
