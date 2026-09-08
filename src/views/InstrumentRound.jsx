@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { instrumentRounds } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
+import TimeOutNotice from '../components/TimeOutNotice'
 import { Brain, Check, Music2, Sparkles, Zap } from 'lucide-react'
 
 export default function InstrumentRound({ roundIndex, playerId, playerAvatar, playerName, onAnswer, gameState, isAdmin }) {
@@ -8,12 +9,25 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
   const [taps, setTaps] = useState([])
   const [submitted, setSubmitted] = useState(null)
   const [showResult, setShowResult] = useState(null)
+  const [timeoutPassed, setTimeoutPassed] = useState(null)
   const imgRef = useRef(null)
 
   const phase = gameState?.phase
   const revealed = phase === 'reveal' || phase === 'ended'
   const myAnswer = gameState?.answers?.[gameState.currentRound]?.[playerId]
   const foundInstruments = gameState?.foundInstruments || {}
+
+  useEffect(() => {
+    setTaps([])
+    setSubmitted(null)
+    setShowResult(null)
+    setTimeoutPassed(null)
+  }, [roundIndex])
+
+  const handleExpire = () => {
+    setTimeoutPassed(Boolean(submitted))
+    setTimeout(() => setTimeoutPassed(null), 4000)
+  }
 
   const handleTap = (e) => {
     if (submitted || revealed) return
@@ -34,7 +48,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
         setSubmitted(inst.id)
         setTaps(t => [...t, { x, y, correct: true }])
         onAnswer({ instrumentId: inst.id, name: inst.name, x, y })
-        setShowResult({ text: `🎉 Found the ${inst.name}! +200pts`, correct: true })
+        setShowResult({ text: `Found the ${inst.name}! +200pts`, correct: true })
         setTimeout(() => setShowResult(null), 2000)
         return
       }
@@ -65,7 +79,9 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
           </div>
         </div>
 
-        <TimerBar duration={45} running={phase === 'playing'} />
+        <TimerBar duration={45} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
+
+        {timeoutPassed !== null && <TimeOutNotice passed={timeoutPassed} />}
 
         <p className="text-gray-400 text-sm">{round.description}</p>
 

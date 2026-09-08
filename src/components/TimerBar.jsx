@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react'
 
-export default function TimerBar({ duration, onExpire, running }) {
+export default function TimerBar({ duration, onExpire, running, resetKey }) {
   const [timeLeft, setTimeLeft] = useState(duration)
+  const [expired, setExpired] = useState(false)
 
   useEffect(() => {
     setTimeLeft(duration)
-  }, [duration])
+    setExpired(false)
+  }, [duration, resetKey])
 
   useEffect(() => {
-    if (!running) return
+    if (!running || expired) return
     if (timeLeft <= 0) {
+      setExpired(true)
       onExpire?.()
       return
     }
     const t = setTimeout(() => setTimeLeft(t => t - 1), 1000)
     return () => clearTimeout(t)
-  }, [timeLeft, running, onExpire])
+  }, [timeLeft, running, onExpire, expired])
 
   const pct = (timeLeft / duration) * 100
   const color = pct > 50 ? '#10b981' : pct > 25 ? '#fbbf24' : '#ef4444'

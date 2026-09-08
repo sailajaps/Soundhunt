@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { emojiRounds } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
+import TimeOutNotice from '../components/TimeOutNotice'
 import { Brain, CheckCircle2, CircleX, ListMusic, Sparkles, Target, Zap } from 'lucide-react'
 
 export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }) {
@@ -9,10 +10,16 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
   const [guess, setGuess] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [result, setResult] = useState(null)
+  const [timeoutPassed, setTimeoutPassed] = useState(null)
 
   const phase = gameState?.phase
   const revealed = phase === 'reveal' || phase === 'ended'
   const myScore = gameState?.players?.find(p => p.id === playerId)?.score || 0
+
+  const handleExpire = () => {
+    setTimeoutPassed(result === true)
+    setTimeout(() => setTimeoutPassed(null), 4000)
+  }
 
   const handleSubmit = () => {
     if (!guess.trim() || submitted) return
@@ -41,7 +48,9 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
           </div>
         </div>
 
-        <TimerBar duration={45} running={phase === 'playing'} />
+        <TimerBar duration={45} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
+
+        {timeoutPassed !== null && <TimeOutNotice passed={timeoutPassed} />}
 
         <p className="text-gray-400 text-sm">{round.question || round.description}</p>
 
