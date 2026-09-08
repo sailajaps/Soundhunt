@@ -13,6 +13,8 @@ export const instrumentRounds = [
       { id: "guitar", name: "Guitar", x: 18, y: 55, emoji: "🎸" },
       { id: "piano", name: "Piano Keys", x: 72, y: 40, emoji: "🎹" },
       { id: "drum", name: "Drum", x: 45, y: 70, emoji: "🥁" },
+      { id: "headphones", name: "Headphones", x: 10, y: 24, emoji: "🎧" },
+      { id: "bass", name: "Bass Guitar", x: 86, y: 72, emoji: "🎸" },
     ]
   },
   {
@@ -27,6 +29,8 @@ export const instrumentRounds = [
       { id: "violin", name: "Violin", x: 25, y: 35, emoji: "🎻" },
       { id: "trumpet", name: "Trumpet", x: 60, y: 25, emoji: "🎺" },
       { id: "flute", name: "Flute", x: 80, y: 60, emoji: "🪈" },
+      { id: "cymbal", name: "Cymbal", x: 14, y: 74, emoji: "🥁" },
+      { id: "music-stand", name: "Music Stand", x: 52, y: 82, emoji: "🎼" },
     ]
   },
   {
@@ -41,6 +45,8 @@ export const instrumentRounds = [
       { id: "guitar2", name: "Guitar", x: 30, y: 60, emoji: "🎸" },
       { id: "mic", name: "Microphone", x: 55, y: 30, emoji: "🎤" },
       { id: "sax", name: "Saxophone", x: 75, y: 55, emoji: "🎷" },
+      { id: "tambourine", name: "Tambourine", x: 12, y: 68, emoji: "🥁" },
+      { id: "spotlight", name: "Stage Spotlight", x: 88, y: 22, emoji: "💡" },
     ]
   }
 ]

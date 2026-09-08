@@ -4,7 +4,7 @@ import TimerBar from '../components/TimerBar'
 import TimeOutNotice from '../components/TimeOutNotice'
 import { Brain, Check, Music2, Sparkles, Zap } from 'lucide-react'
 
-export default function InstrumentRound({ roundIndex, playerId, playerAvatar, playerName, onAnswer, gameState, isAdmin }) {
+export default function InstrumentRound({ roundIndex, playerId, playerAvatar, playerName, onAnswer, onRoundExpire, gameState, isAdmin }) {
   const round = instrumentRounds[roundIndex]
   const [taps, setTaps] = useState([])
   const [submitted, setSubmitted] = useState(null)
@@ -27,6 +27,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
   const handleExpire = () => {
     setTimeoutPassed(Boolean(submitted))
     setTimeout(() => setTimeoutPassed(null), 4000)
+    onRoundExpire()
   }
 
   const handleTap = (e) => {
@@ -156,7 +157,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
         {/* Found instruments */}
         <div className="card">
           <div className="text-xs text-gray-400 mb-2">Instruments in this image</div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             {round.instruments.map(inst => (
               <div key={inst.id} className="flex items-center gap-1 text-sm">
                 <Music2 size={14} />

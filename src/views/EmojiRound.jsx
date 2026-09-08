@@ -4,7 +4,7 @@ import TimerBar from '../components/TimerBar'
 import TimeOutNotice from '../components/TimeOutNotice'
 import { Brain, CheckCircle2, CircleX, ListMusic, Sparkles, Target, Zap } from 'lucide-react'
 
-export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }) {
+export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpire, gameState }) {
   const emojiIndex = roundIndex - 3 // rounds 3,4,5 map to emojiRounds 0,1,2
   const round = emojiRounds[emojiIndex]
   const [guess, setGuess] = useState('')
@@ -19,6 +19,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
   const handleExpire = () => {
     setTimeoutPassed(result === true)
     setTimeout(() => setTimeoutPassed(null), 4000)
+    onRoundExpire()
   }
 
   const handleSubmit = () => {

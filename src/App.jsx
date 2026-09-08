@@ -55,6 +55,10 @@ export default function App() {
 
   const handlePreference = (preference) => handleAnswer({ preference })
 
+  const handleRoundExpire = () => {
+    updateState({ action: 'reveal' })
+  }
+
   const handlePlayAgain = () => {
     updateState({ action: 'reset' })
   }
@@ -100,6 +104,7 @@ export default function App() {
             playerName={playerName}
             playerAvatar={playerAvatar}
             onAnswer={handleAnswer}
+            onRoundExpire={handleRoundExpire}
             gameState={gameState}
           />
         )
@@ -110,6 +115,7 @@ export default function App() {
             playerId={playerId}
             playerName={playerName}
             onAnswer={handleAnswer}
+            onRoundExpire={handleRoundExpire}
             gameState={gameState}
           />
         )
