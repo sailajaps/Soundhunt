@@ -42,7 +42,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
 
         <TimerBar duration={45} running={phase === 'playing'} />
 
-        <p className="text-gray-400 text-sm">{round.description}</p>
+        <p className="text-gray-400 text-sm">{round.question || round.description}</p>
 
         {/* Emoji display */}
         <div
@@ -50,8 +50,11 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
           style={{ background: 'linear-gradient(135deg, #7c3aed11, #ec489911)' }}
         >
           <div className="text-6xl mb-3 tracking-wider">{round.emoji}</div>
+          <audio className="w-full max-w-sm mx-auto" controls preload="metadata" src={round.audioUrl}>
+            Your browser does not support audio playback.
+          </audio>
           {!revealed && (
-            <p className="text-gray-500 text-xs">What music psychology effect does this describe?</p>
+            <p className="text-gray-500 text-xs mt-3">Listen to the music clue, then choose an answer.</p>
           )}
           {revealed && (
             <div className="mt-3">
@@ -64,14 +67,21 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, gameState }
         {/* Input */}
         {!submitted && !revealed && (
           <div className="space-y-3">
-            <input
-              className="input text-lg text-center"
-              placeholder="Type your answer..."
-              value={guess}
-              onChange={e => setGuess(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleSubmit()}
-              autoFocus
-            />
+            <div className="grid gap-2">
+              {round.options.map(option => (
+                <button
+                  key={option}
+                  onClick={() => setGuess(option)}
+                  className="w-full text-left px-4 py-3 rounded-xl transition-all"
+                  style={{
+                    background: guess === option ? '#7c3aed33' : '#12122a',
+                    border: guess === option ? '2px solid #7c3aed' : '2px solid #1e1e4a'
+                  }}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
             <button
               onClick={handleSubmit}
               disabled={!guess.trim()}

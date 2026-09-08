@@ -44,6 +44,9 @@ export const emojiRounds = [
   {
     id: 4,
     emoji: "😴 🧠 🌊 ∿∿∿",
+    question: "Which sound effect may help some people relax or sleep?",
+    options: ["Binaural beats", "A drum solo", "A music video", "A concert crowd"],
+    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     answer: "Binaural Beats",
     acceptedAnswers: ["binaural beats", "binaural", "binaural beat"],
     hint: "A type of auditory processing...",
@@ -53,8 +56,11 @@ export const emojiRounds = [
   {
     id: 5,
     emoji: "🏃 ⚡ 🎧 💪 🔥",
+    question: "Why do many people listen to music while exercising?",
+    options: ["It can make exercise feel easier", "It makes shoes lighter", "It stops the timer", "It replaces warm-ups"],
+    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     answer: "Music Boosts Performance",
-    acceptedAnswers: ["music boosts performance", "music improves performance", "music boosts athletic performance", "performance boost", "workout music", "music helps exercise"],
+    acceptedAnswers: ["it can make exercise feel easier", "music boosts performance", "music improves performance", "music boosts athletic performance", "performance boost", "workout music", "music helps exercise"],
     hint: "Something athletes rely on...",
     psychFact: "Listening to music during exercise can increase endurance by up to 15%. It reduces perceived effort, synchronises movement, and floods the brain with dopamine — your body's natural performance enhancer.",
     description: "What psychological effect does this describe?"
@@ -62,8 +68,11 @@ export const emojiRounds = [
   {
     id: 6,
     emoji: "😢 🎻 🌧️ 💔 🎵",
+    question: "Which musical sound is often associated with sadness?",
+    options: ["A minor key", "A bright light", "A fast clap", "A microphone"],
+    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
     answer: "Minor Key Sadness",
-    acceptedAnswers: ["minor key sadness", "minor key", "sad music", "minor chords", "music makes you cry", "minor scale"],
+    acceptedAnswers: ["a minor key", "minor key sadness", "minor key", "sad music", "minor chords", "music makes you cry", "minor scale"],
     hint: "It's about musical structure and emotion...",
     psychFact: "Minor key music mimics the acoustic properties of a human cry — falling pitch, slower tempo, lower frequency. Your brain is wired to detect distress signals in sound, so minor chords trigger genuine emotional sadness.",
     description: "What psychological phenomenon is shown here?"
