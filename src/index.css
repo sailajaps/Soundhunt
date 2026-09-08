@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  background: #0a0a14;
+  color: #fff;
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-hunt-purple hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer;
+  }
+  .btn-secondary {
+    @apply bg-hunt-card hover:bg-hunt-border text-white font-semibold px-6 py-3 rounded-xl border border-hunt-border transition-all duration-200 active:scale-95 cursor-pointer;
+  }
+  .card {
+    @apply bg-hunt-card border border-hunt-border rounded-2xl p-6;
+  }
+  .input {
+    @apply bg-hunt-bg border border-hunt-border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-hunt-purple w-full transition-colors;
+  }
+}
+
+/* Instrument hotspot ripple */
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.hotspot-ripple {
+  animation: ripple 0.6s ease-out forwards;
+}
+
+/* Floating notes background */
+@keyframes floatUp {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+.float-note {
+  animation: floatUp linear infinite;
+  position: fixed;
+  pointer-events: none;
+  font-size: 1.5rem;
+  z-index: 0;
+}
+
+/* Confetti */
+@keyframes confettiFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+  animation: confettiFall linear forwards;
+  position: fixed;
+  pointer-events: none;
+  z-index: 50;
+  border-radius: 2px;
+}
+
+/* Score pop */
+@keyframes scorePop {
+  0% { transform: scale(0) translateY(0); opacity: 1; }
+  70% { transform: scale(1.2) translateY(-30px); opacity: 1; }
+  100% { transform: scale(1) translateY(-50px); opacity: 0; }
+}
+
+.score-pop {
+  animation: scorePop 1s ease-out forwards;
+}
+
+/* Timer bar */
+@keyframes timerShrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
