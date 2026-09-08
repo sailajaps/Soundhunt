@@ -22,7 +22,6 @@ export default async function handler(req, res) {
   const updated = { ...state }
   if (!updated.preferences) updated.preferences = {}
   if (!updated.answers) updated.answers = {}
-  if (!updated.answers[roundIndex]) updated.answers[roundIndex] = {}
   if (!updated.foundInstruments) updated.foundInstruments = {}
 
   let pointsEarned = 0
@@ -34,6 +33,10 @@ export default async function handler(req, res) {
 
     updated.preferences[playerId] = { name: playerName, preference, points: 100 }
     pointsEarned = 100
+  }
+
+  if (roundIndex !== undefined && !updated.answers[roundIndex]) {
+    updated.answers[roundIndex] = {}
   }
 
   // Instrument round (rounds 0-2)
