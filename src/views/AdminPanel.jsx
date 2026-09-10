@@ -205,7 +205,7 @@ export default function AdminPanel({ roomCode }) {
             </div>
           </div>
           <div className="card">
-            <Leaderboard players={players} title="Scores After Round {currentRound + 1}" />
+            <Leaderboard players={players} title={`Scores After Round ${currentRound + 1}`} />
           </div>
           <div className="grid grid-cols-2 gap-3">
             {currentRound < 5 ? (
