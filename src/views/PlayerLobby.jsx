@@ -52,7 +52,7 @@ export default function PlayerLobby({ name, avatar, players = [], roomCode, pref
           <div className="mt-3 space-y-2 text-left">
             <div className="flex gap-2 text-sm text-gray-400">
               <Search size={17} className="shrink-0 text-hunt-purple" />
-              <span>Questions 1–5: Spot as many hidden instruments as you can in 30 seconds. Every find earns 200 pts!</span>
+              <span>Questions 1–5: Spot as many hidden instruments as you can in 20 seconds. Every find earns 200 pts!</span>
             </div>
             <div className="flex gap-2 text-sm text-gray-400">
               <ListMusic size={17} className="shrink-0 text-hunt-cyan" />

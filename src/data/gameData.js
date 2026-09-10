@@ -134,6 +134,6 @@ export const MAX_PLAYERS = 20
 export const INSTRUMENT_POINTS = 200
 export const EMOJI_POINTS = 300
 export const ROUND_TIMER = 45 // seconds
-export const INSTRUMENT_ROUND_TIMER = 30
+export const INSTRUMENT_ROUND_TIMER = 20
 export const INSTRUMENT_ROUND_COUNT = instrumentRounds.length
 export const TOTAL_ROUND_COUNT = instrumentRounds.length + emojiRounds.length
