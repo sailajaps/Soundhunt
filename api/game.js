@@ -4,6 +4,11 @@ function generateRoomCode() {
   return Math.random().toString(36).substring(2, 6).toUpperCase()
 }
 
+async function clearPreviousGames() {
+  const keys = await kv.keys('game:*')
+  if (keys.length > 0) await Promise.all(keys.map(key => kv.del(key)))
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
@@ -29,6 +34,8 @@ export default async function handler(req, res) {
 
     // Create new game
     if (action === 'create') {
+      await clearPreviousGames()
+
       let code = generateRoomCode()
       // Ensure unique code
       let existing = await kv.get(`game:${code}`)
