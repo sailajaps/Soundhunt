@@ -56,7 +56,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
           </div>
         </div>
 
-        <TimerBar duration={ROUND_TIMER} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
+        <TimerBar duration={ROUND_TIMER} resetKey={roundIndex} startTime={gameState?.roundStartedAt} onExpire={handleExpire} running={phase === 'playing'} />
 
         {timeoutPassed !== null && <TimeOutNotice passed={timeoutPassed} />}
 

@@ -141,6 +141,7 @@ export default function AdminPanel({ roomCode }) {
           <TimerBar
             duration={currentRound < INSTRUMENT_ROUND_COUNT ? INSTRUMENT_ROUND_TIMER : ROUND_TIMER}
             resetKey={currentRound}
+            startTime={gameState?.roundStartedAt}
             running={phase === 'playing'}
             onExpire={revealWhenTimerEnds}
           />

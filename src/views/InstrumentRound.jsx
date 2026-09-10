@@ -84,7 +84,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
           </div>
         </div>
 
-        <TimerBar duration={INSTRUMENT_ROUND_TIMER} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
+        <TimerBar duration={INSTRUMENT_ROUND_TIMER} resetKey={roundIndex} startTime={gameState?.roundStartedAt} onExpire={handleExpire} running={phase === 'playing'} />
 
         {timeoutPassed !== null && <TimeOutNotice passed={timeoutPassed} />}
 

@@ -1,24 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-export default function TimerBar({ duration, onExpire, running, resetKey }) {
+export default function TimerBar({ duration, onExpire, running, resetKey, startTime }) {
   const [timeLeft, setTimeLeft] = useState(duration)
-  const [expired, setExpired] = useState(false)
+  const expiredRef = useRef(false)
+  const onExpireRef = useRef(onExpire)
+  const localStartRef = useRef(null)
+
+  useEffect(() => {
+    onExpireRef.current = onExpire
+  }, [onExpire])
 
   useEffect(() => {
     setTimeLeft(duration)
-    setExpired(false)
-  }, [duration, resetKey])
+    expiredRef.current = false
+    localStartRef.current = startTime || Date.now()
+    if (!running) return
 
-  useEffect(() => {
-    if (!running || expired) return
-    if (timeLeft <= 0) {
-      setExpired(true)
-      onExpire?.()
-      return
+    const update = () => {
+      const elapsed = Math.floor((Date.now() - localStartRef.current) / 1000)
+      const remaining = Math.max(0, duration - elapsed)
+      setTimeLeft(remaining)
+      if (remaining === 0 && !expiredRef.current) {
+        expiredRef.current = true
+        onExpireRef.current?.()
+      }
     }
-    const t = setTimeout(() => setTimeLeft(t => t - 1), 1000)
-    return () => clearTimeout(t)
-  }, [timeLeft, running, onExpire, expired])
+
+    update()
+    const interval = setInterval(update, 250)
+    return () => clearInterval(interval)
+  }, [duration, resetKey, running, startTime])
 
   const pct = (timeLeft / duration) * 100
   const color = pct > 50 ? '#10b981' : pct > 25 ? '#fbbf24' : '#ef4444'

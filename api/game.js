@@ -68,6 +68,7 @@ export default async function handler(req, res) {
       updated.phase = 'playing'
       updated.currentRound = 0
       updated.startedAt = Date.now()
+      updated.roundStartedAt = updated.startedAt
     }
 
     if (action === 'nextRound') {
@@ -77,6 +78,7 @@ export default async function handler(req, res) {
       } else {
         updated.phase = 'playing'
         updated.currentRound = next
+        updated.roundStartedAt = Date.now()
       }
     }
 
