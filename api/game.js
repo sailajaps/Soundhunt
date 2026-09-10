@@ -73,7 +73,7 @@ export default async function handler(req, res) {
 
     if (action === 'nextRound') {
       const next = (state.currentRound || 0) + 1
-      if (next >= 8) {
+      if (next >= 10) {
         updated.phase = 'ended'
       } else {
         updated.phase = 'playing'

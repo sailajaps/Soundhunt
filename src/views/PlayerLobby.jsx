@@ -56,7 +56,7 @@ export default function PlayerLobby({ name, avatar, players = [], roomCode, pref
             </div>
             <div className="flex gap-2 text-sm text-gray-400">
               <ListMusic size={17} className="shrink-0 text-hunt-cyan" />
-              <span>Questions 6–8: Decode music psychology clues. The first correct answer earns 300 pts!</span>
+              <span>Questions 6–10: Decode music psychology clues. The first correct answer earns 300 pts!</span>
             </div>
           </div>
         </div>

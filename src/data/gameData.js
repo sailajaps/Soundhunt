@@ -83,7 +83,7 @@ export const instrumentRounds = [
   }
 ]
 
-// Round 4-6: Emoji Clue Rounds
+// Questions 6-10: Music Psychology Rounds
 export const emojiRounds = [
   {
     id: 4,
@@ -126,6 +126,34 @@ export const emojiRounds = [
     funFact: "A minor key does not always sound sad; tempo and performance style matter too.",
     surprisingFact: "People from different cultures often recognise sadness in slow, low-pitched music.",
     description: "What psychological phenomenon is shown here?"
+  },
+  {
+    id: 7,
+    emoji: "🎶 🧠 🔁 😊",
+    question: "Why can a familiar song suddenly bring back a strong memory?",
+    options: ["Music connects with memory", "Songs change the weather", "Music makes time stop", "Your ears grow stronger"],
+    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    answer: "Music and Memory",
+    acceptedAnswers: ["music connects with memory", "music and memory", "music memory", "songs trigger memories", "music triggers memories"],
+    hint: "Think about a song from your past...",
+    psychFact: "Music and memories are closely linked because familiar songs activate emotion and autobiographical memory networks together.",
+    funFact: "A song can remind you of a place or moment even after many years.",
+    surprisingFact: "Music can help bring back memories that are difficult to recall without the song.",
+    description: "What music psychology effect does this describe?"
+  },
+  {
+    id: 8,
+    emoji: "👥 🎵 🤝 ❤️",
+    question: "What can singing together help people feel?",
+    options: ["A stronger sense of connection", "Less need for sleep", "A faster internet connection", "A different eye color"],
+    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+    answer: "Music Builds Connection",
+    acceptedAnswers: ["a stronger sense of connection", "music builds connection", "social bonding", "connection", "music and connection"],
+    hint: "Think about making music with other people...",
+    psychFact: "Group music-making synchronizes movement and attention, which can strengthen feelings of trust and belonging.",
+    funFact: "People often breathe and move together naturally while singing in a group.",
+    surprisingFact: "Even strangers can feel more connected after making music together.",
+    description: "What social effect is shown here?"
   }
 ]
 
