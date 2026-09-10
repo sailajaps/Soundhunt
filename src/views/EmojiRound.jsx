@@ -68,10 +68,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
             <p className="text-gray-500 text-xs mt-3">Listen to the music clue, then choose an answer.</p>
           )}
           {revealed && (
-            <div className="mt-3">
-              <div className="text-sm text-gray-400 mb-1">The answer was:</div>
-              <div className="text-2xl font-bold text-hunt-cyan">{round.answer}</div>
-            </div>
+            <p className="mt-3 text-sm text-gray-600">The host is revealing the answer.</p>
           )}
         </div>
 
@@ -123,25 +120,6 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
         )}
 
         {/* Psych Fact on reveal */}
-        {revealed && (
-          <div className="space-y-3">
-            <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
-              <div className="text-xs text-hunt-purple font-semibold mb-2 flex items-center gap-1"><Brain size={14} /> Psychology Fact</div>
-              <p className="text-sm text-gray-300">{round.psychFact}</p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="card" style={{ border: '1px solid #fbbf2444', background: '#fbbf2411' }}>
-                <div className="text-xs text-hunt-yellow font-semibold mb-2 flex items-center gap-1"><Sparkles size={14} /> Fun Fact</div>
-                <p className="text-sm text-gray-300">{round.funFact}</p>
-              </div>
-              <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
-                <div className="text-xs text-hunt-cyan font-semibold mb-2 flex items-center gap-1"><Zap size={14} /> Surprising Fact</div>
-                <p className="text-sm text-gray-300">{round.surprisingFact}</p>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Hint */}
         {!submitted && !revealed && (
           <div className="text-center">

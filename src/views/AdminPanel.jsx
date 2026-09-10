@@ -4,6 +4,7 @@ import { useGameState } from '../hooks/useGameState'
 import Leaderboard from '../components/Leaderboard'
 import Confetti from '../components/Confetti'
 import { emojiRounds, instrumentRounds } from '../data/gameData'
+import TimerBar from '../components/TimerBar'
 import { ArrowRight, Crown, Eye, Lightbulb, ListMusic, Play, RotateCcw, Search, Trophy } from 'lucide-react'
 
 export default function AdminPanel({ roomCode }) {
@@ -25,6 +26,7 @@ export default function AdminPanel({ roomCode }) {
   const startGame = () => updateState({ action: 'start' })
   const nextRound = () => updateState({ action: 'nextRound' })
   const revealAnswer = () => updateState({ action: 'reveal' })
+  const revealWhenTimerEnds = () => updateState({ action: 'reveal' })
   const endGame = () => updateState({ action: 'end' })
   const resetGame = () => updateState({ action: 'reset' })
 
@@ -116,6 +118,13 @@ export default function AdminPanel({ roomCode }) {
               </div>
             </div>
           </div>
+
+          <TimerBar
+            duration={45}
+            resetKey={currentRound}
+            running={phase === 'playing'}
+            onExpire={revealWhenTimerEnds}
+          />
 
           {/* Player Answers Live */}
           <div className="card">

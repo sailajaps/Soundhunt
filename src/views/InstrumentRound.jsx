@@ -7,7 +7,7 @@ import { Brain, Check, Music2, Sparkles, Zap } from 'lucide-react'
 export default function InstrumentRound({ roundIndex, playerId, playerAvatar, playerName, onAnswer, onRoundExpire, gameState, isAdmin }) {
   const round = instrumentRounds[roundIndex]
   const [taps, setTaps] = useState([])
-  const [submitted, setSubmitted] = useState(null)
+  const [submitted, setSubmitted] = useState([])
   const [showResult, setShowResult] = useState(null)
   const [timeoutPassed, setTimeoutPassed] = useState(null)
   const imgRef = useRef(null)
@@ -25,13 +25,13 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
   }, [roundIndex])
 
   const handleExpire = () => {
-    setTimeoutPassed(Boolean(submitted))
+    setTimeoutPassed(submitted.length > 0)
     setTimeout(() => setTimeoutPassed(null), 4000)
     onRoundExpire()
   }
 
   const handleTap = (e) => {
-    if (submitted || revealed) return
+    if (revealed) return
     const rect = imgRef.current.getBoundingClientRect()
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
@@ -46,7 +46,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
           return
         }
         // Correct!
-        setSubmitted(inst.id)
+        setSubmitted(found => found.includes(inst.id) ? found : [...found, inst.id])
         setTaps(t => [...t, { x, y, correct: true }])
         onAnswer({ instrumentId: inst.id, name: inst.name, x, y })
         setShowResult({ text: `Found the ${inst.name}! +200pts`, correct: true })
@@ -64,7 +64,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
   if (!round) return null
 
   return (
-    <div className="min-h-screen p-4 max-w-lg mx-auto">
+    <div className="min-h-screen p-4 max-w-4xl mx-auto">
       <div className="space-y-4">
         {/* Round header */}
         <div className="flex items-center justify-between">
@@ -87,7 +87,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
         <p className="text-gray-400 text-sm">{round.description}</p>
 
         {/* Image with hotspots */}
-        <div className="relative rounded-2xl overflow-hidden cursor-crosshair" style={{ aspectRatio: '16/10' }}>
+        <div className="relative rounded-2xl overflow-hidden cursor-crosshair shadow-lg" style={{ aspectRatio: '16/9' }}>
           <img
             ref={imgRef}
             src={round.image}
@@ -121,7 +121,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
           ))}
 
           {/* Reveal hotspots */}
-          {revealed && round.instruments.map(inst => (
+          {false && revealed && round.instruments.map(inst => (
             <div
               key={inst.id}
               className="absolute pointer-events-none animate-bounce"
@@ -171,28 +171,9 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
         </div>
 
         {/* Psych fact on reveal */}
-        {revealed && (
-          <div className="space-y-3">
-            <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
-              <div className="text-xs text-hunt-purple font-semibold mb-2 flex items-center gap-1"><Brain size={14} /> Psychology Fact</div>
-              <p className="text-sm text-gray-300">{round.psychFact}</p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="card" style={{ border: '1px solid #fbbf2444', background: '#fbbf2411' }}>
-                <div className="text-xs text-hunt-yellow font-semibold mb-2 flex items-center gap-1"><Sparkles size={14} /> Fun Fact</div>
-                <p className="text-sm text-gray-300">{round.funFact}</p>
-              </div>
-              <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
-                <div className="text-xs text-hunt-cyan font-semibold mb-2 flex items-center gap-1"><Zap size={14} /> Surprising Fact</div>
-                <p className="text-sm text-gray-300">{round.surprisingFact}</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {submitted && (
+        {submitted.length > 0 && (
           <div className="card text-center text-green-400 font-semibold">
-            <span className="inline-flex items-center gap-2"><Check size={18} /> You found an instrument! Watch for more...</span>
+            <span className="inline-flex items-center gap-2"><Check size={18} /> You found {submitted.length} instrument{submitted.length === 1 ? '' : 's'}! Keep looking...</span>
           </div>
         )}
       </div>
