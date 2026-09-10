@@ -1,4 +1,4 @@
-// Round 1-3: Hidden Instrument Rounds
+// Questions 1-5: Hidden Instrument Rounds
 // Each round has an image URL and instrument hotspots (x%, y% positions)
 export const instrumentRounds = [
   {
@@ -47,6 +47,38 @@ export const instrumentRounds = [
       { id: "sax", name: "Saxophone", x: 75, y: 55, emoji: "🎷" },
       { id: "tambourine", name: "Tambourine", x: 12, y: 68, emoji: "🥁" },
       { id: "spotlight", name: "Stage Spotlight", x: 88, y: 22, emoji: "💡" },
+    ]
+  },
+  {
+    id: 4,
+    title: "The Recording Studio",
+    description: "Find every instrument hidden in this busy recording studio.",
+    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=85",
+    psychFact: "Performing music with others helps the brain coordinate timing, attention, and social connection.",
+    funFact: "A recording studio can use dozens of microphones for one live session.",
+    surprisingFact: "Tiny timing differences between musicians can change the feeling of an entire song.",
+    instruments: [
+      { id: "studio-guitar", name: "Electric Guitar", x: 18, y: 62, emoji: "🎸" },
+      { id: "studio-keys", name: "Keyboard", x: 48, y: 48, emoji: "🎹" },
+      { id: "studio-mic", name: "Studio Microphone", x: 70, y: 30, emoji: "🎤" },
+      { id: "studio-drums", name: "Drum Kit", x: 83, y: 68, emoji: "🥁" },
+      { id: "studio-headphones", name: "Headphones", x: 8, y: 22, emoji: "🎧" },
+    ]
+  },
+  {
+    id: 5,
+    title: "The Orchestra Stage",
+    description: "Scan the orchestra stage and click every instrument you can find.",
+    image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1200&q=85",
+    psychFact: "Listening to an orchestra combines melody, rhythm, and timbre into one rich auditory experience.",
+    funFact: "A full orchestra may include more than 80 musicians.",
+    surprisingFact: "Your brain separates many instruments playing at once into distinct sound streams.",
+    instruments: [
+      { id: "orchestra-violin", name: "Violin", x: 20, y: 42, emoji: "🎻" },
+      { id: "orchestra-cello", name: "Cello", x: 38, y: 64, emoji: "🎻" },
+      { id: "orchestra-horn", name: "French Horn", x: 58, y: 38, emoji: "🎺" },
+      { id: "orchestra-flute", name: "Flute", x: 76, y: 48, emoji: "🪈" },
+      { id: "orchestra-percussion", name: "Percussion", x: 90, y: 70, emoji: "🥁" },
     ]
   }
 ]
@@ -102,3 +134,6 @@ export const MAX_PLAYERS = 15
 export const INSTRUMENT_POINTS = 200
 export const EMOJI_POINTS = 300
 export const ROUND_TIMER = 45 // seconds
+export const INSTRUMENT_ROUND_TIMER = 30
+export const INSTRUMENT_ROUND_COUNT = instrumentRounds.length
+export const TOTAL_ROUND_COUNT = instrumentRounds.length + emojiRounds.length

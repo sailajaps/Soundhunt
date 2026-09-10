@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { emojiRounds } from '../data/gameData'
+import { emojiRounds, ROUND_TIMER, TOTAL_ROUND_COUNT } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
 import TimeOutNotice from '../components/TimeOutNotice'
 import { Brain, CheckCircle2, CircleX, ListMusic, Sparkles, Target, Zap } from 'lucide-react'
 
 export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpire, gameState }) {
-  const emojiIndex = roundIndex - 3 // rounds 3,4,5 map to emojiRounds 0,1,2
+  const emojiIndex = roundIndex - 5 // questions 6,7,8 map to emojiRounds 0,1,2
   const round = emojiRounds[emojiIndex]
   const [guess, setGuess] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -40,7 +40,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-xs text-gray-400">Round {roundIndex + 1} of 6</div>
+            <div className="text-xs text-gray-400">Question {roundIndex + 1} of {TOTAL_ROUND_COUNT}</div>
             <h2 className="text-xl font-bold flex items-center gap-2"><ListMusic className="text-hunt-cyan" size={20} /> Decode the Emojis</h2>
           </div>
           <div className="card py-1 px-3 text-center">
@@ -49,7 +49,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
           </div>
         </div>
 
-        <TimerBar duration={45} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
+        <TimerBar duration={ROUND_TIMER} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
 
         {timeoutPassed !== null && <TimeOutNotice passed={timeoutPassed} />}
 

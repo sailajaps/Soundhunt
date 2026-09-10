@@ -8,6 +8,7 @@ import PlayerLobby from './views/PlayerLobby'
 import InstrumentRound from './views/InstrumentRound'
 import EmojiRound from './views/EmojiRound'
 import Winner from './views/Winner'
+import { INSTRUMENT_ROUND_COUNT } from './data/gameData'
 
 export default function App() {
   const [role, setRole] = useState(null) // 'admin' | 'player'
@@ -96,7 +97,7 @@ export default function App() {
     }
 
     if (phase === 'playing' || phase === 'reveal') {
-      if (currentRound < 3) {
+      if (currentRound < INSTRUMENT_ROUND_COUNT) {
         return (
           <InstrumentRound
             roundIndex={currentRound}

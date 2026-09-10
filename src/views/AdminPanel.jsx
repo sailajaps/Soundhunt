@@ -3,7 +3,7 @@ import { QRCodeSVG } from 'qrcode.react'
 import { useGameState } from '../hooks/useGameState'
 import Leaderboard from '../components/Leaderboard'
 import Confetti from '../components/Confetti'
-import { emojiRounds, instrumentRounds } from '../data/gameData'
+import { emojiRounds, INSTRUMENT_ROUND_COUNT, INSTRUMENT_ROUND_TIMER, instrumentRounds, ROUND_TIMER, TOTAL_ROUND_COUNT } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
 import { ArrowRight, Crown, Lightbulb, ListMusic, Play, RotateCcw, Search, Trophy } from 'lucide-react'
 
@@ -32,10 +32,10 @@ export default function AdminPanel({ roomCode }) {
 
   const roundAnswers = answers[currentRound] || {}
   const answerList = Object.values(roundAnswers)
-  const revealedRound = currentRound < 3
+  const revealedRound = currentRound < INSTRUMENT_ROUND_COUNT
     ? instrumentRounds[currentRound]
     : emojiRounds[currentRound - 3]
-  const revealedAnswer = currentRound < 3
+  const revealedAnswer = currentRound < INSTRUMENT_ROUND_COUNT
     ? revealedRound?.instruments.map(instrument => instrument.name).join(' · ')
     : revealedRound?.answer
 
@@ -107,20 +107,20 @@ export default function AdminPanel({ roomCode }) {
               <div>
                 <div className="text-sm text-gray-400">Current Round</div>
                 <div className="text-2xl font-bold">
-                  Round {currentRound + 1} / 6
+                  Question {currentRound + 1} / {TOTAL_ROUND_COUNT}
                   <span className="text-sm font-normal text-gray-400 ml-2">
-                    {currentRound < 3 ? 'Hidden Instrument' : 'Music Psychology'}
+                    {currentRound < INSTRUMENT_ROUND_COUNT ? 'Hidden Instrument' : 'Music Psychology'}
                   </span>
                 </div>
               </div>
               <div className="text-4xl">
-                {currentRound < 3 ? <Search className="text-hunt-purple" /> : <ListMusic className="text-hunt-cyan" />}
+                {currentRound < INSTRUMENT_ROUND_COUNT ? <Search className="text-hunt-purple" /> : <ListMusic className="text-hunt-cyan" />}
               </div>
             </div>
           </div>
 
           <TimerBar
-            duration={45}
+            duration={currentRound < INSTRUMENT_ROUND_COUNT ? INSTRUMENT_ROUND_TIMER : ROUND_TIMER}
             resetKey={currentRound}
             running={phase === 'playing'}
             onExpire={revealWhenTimerEnds}
@@ -159,7 +159,7 @@ export default function AdminPanel({ roomCode }) {
             <button onClick={revealAnswer} className="btn-secondary py-3">
               <><Lightbulb size={18} /> Reveal Answer</>
             </button>
-            {currentRound < 5 ? (
+            {currentRound < TOTAL_ROUND_COUNT - 1 ? (
               <button onClick={nextRound} className="btn-primary py-3">
                 <><span>Next Round</span><ArrowRight size={18} /></>
               </button>
@@ -208,7 +208,7 @@ export default function AdminPanel({ roomCode }) {
             <Leaderboard players={players} title={`Scores After Round ${currentRound + 1}`} />
           </div>
           <div className="grid grid-cols-2 gap-3">
-            {currentRound < 5 ? (
+            {currentRound < TOTAL_ROUND_COUNT - 1 ? (
               <button onClick={nextRound} className="col-span-2 btn-primary py-3">
                 <><span>Next Round</span><ArrowRight size={18} /></>
               </button>

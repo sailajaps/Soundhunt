@@ -52,11 +52,11 @@ export default function PlayerLobby({ name, avatar, players = [], roomCode, pref
           <div className="mt-3 space-y-2 text-left">
             <div className="flex gap-2 text-sm text-gray-400">
               <Search size={17} className="shrink-0 text-hunt-purple" />
-              <span>Rounds 1–3: Spot hidden instruments in images. First to find one gets 200 pts!</span>
+              <span>Questions 1–5: Spot as many hidden instruments as you can in 30 seconds. Every find earns 200 pts!</span>
             </div>
             <div className="flex gap-2 text-sm text-gray-400">
               <ListMusic size={17} className="shrink-0 text-hunt-cyan" />
-              <span>Rounds 4–6: Decode emoji clues to name a music psychology effect. First correct = 300 pts!</span>
+              <span>Questions 6–8: Decode music psychology clues. The first correct answer earns 300 pts!</span>
             </div>
           </div>
         </div>

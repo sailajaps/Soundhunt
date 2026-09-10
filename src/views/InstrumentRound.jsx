@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { instrumentRounds } from '../data/gameData'
+import { INSTRUMENT_ROUND_TIMER, instrumentRounds } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
 import TimeOutNotice from '../components/TimeOutNotice'
 import { Brain, Check, Music2, Sparkles, Zap } from 'lucide-react'
@@ -19,7 +19,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
 
   useEffect(() => {
     setTaps([])
-    setSubmitted(null)
+    setSubmitted([])
     setShowResult(null)
     setTimeoutPassed(null)
   }, [roundIndex])
@@ -69,7 +69,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
         {/* Round header */}
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-xs text-gray-400">Round {roundIndex + 1} of 6</div>
+            <div className="text-xs text-gray-400">Question {roundIndex + 1} of 5</div>
             <h2 className="text-xl font-bold">{round.title}</h2>
           </div>
           <div className="card py-1 px-3 text-center">
@@ -80,7 +80,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
           </div>
         </div>
 
-        <TimerBar duration={45} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
+        <TimerBar duration={INSTRUMENT_ROUND_TIMER} resetKey={roundIndex} onExpire={handleExpire} running={phase === 'playing'} />
 
         {timeoutPassed !== null && <TimeOutNotice passed={timeoutPassed} />}
 
