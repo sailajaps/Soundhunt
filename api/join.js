@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   const state = await kv.get(`game:${room}`)
   if (!state) return res.status(404).json({ error: 'Room not found. Check your room code.' })
   if (state.phase === 'ended') return res.status(400).json({ error: 'Game has ended. Please join a new game.' })
-  if (state.players.length >= 15) return res.status(400).json({ error: 'Room is full (15 players max)' })
+  if (state.players.length >= 20) return res.status(400).json({ error: 'Room is full (20 players max)' })
 
   // Check name not taken
   const nameTaken = state.players.some(p => p.name.toLowerCase() === name.toLowerCase())

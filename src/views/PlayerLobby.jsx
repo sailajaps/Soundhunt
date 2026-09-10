@@ -21,7 +21,7 @@ export default function PlayerLobby({ name, avatar, players = [], roomCode, pref
         <div className="card">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold">In the room</h3>
-            <span className="text-hunt-cyan font-mono text-sm">{players.length}/15</span>
+            <span className="text-hunt-cyan font-mono text-sm">{players.length}/20</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {players.map(p => (

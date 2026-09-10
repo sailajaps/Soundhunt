@@ -71,7 +71,7 @@ export default function AdminPanel({ roomCode }) {
           <div className="card">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold">Players Joined</h3>
-              <span className="text-hunt-cyan font-mono">{players.length}/15</span>
+              <span className="text-hunt-cyan font-mono">{players.length}/20</span>
             </div>
             {players.length === 0 ? (
               <p className="text-gray-500 text-sm text-center py-4">Waiting for players to join...</p>

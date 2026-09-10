@@ -130,7 +130,7 @@ export const emojiRounds = [
 ]
 
 export const ADMIN_PASSWORD = "soundhunt2024"
-export const MAX_PLAYERS = 15
+export const MAX_PLAYERS = 20
 export const INSTRUMENT_POINTS = 200
 export const EMOJI_POINTS = 300
 export const ROUND_TIMER = 45 // seconds
