@@ -5,11 +5,12 @@ import Leaderboard from '../components/Leaderboard'
 import Confetti from '../components/Confetti'
 import { emojiRounds, INSTRUMENT_ROUND_COUNT, INSTRUMENT_ROUND_TIMER, instrumentRounds, ROUND_TIMER, TOTAL_ROUND_COUNT } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
-import { ArrowRight, Crown, Lightbulb, ListMusic, Play, RotateCcw, Search, Trophy } from 'lucide-react'
+import { ArrowRight, Clipboard, Crown, Lightbulb, ListMusic, Play, RotateCcw, Search, Trophy } from 'lucide-react'
 
 export default function AdminPanel({ roomCode }) {
   const { gameState, updateState } = useGameState(roomCode, 'admin')
   const [tab, setTab] = useState('lobby')
+  const [copied, setCopied] = useState(false)
   const gameUrl = `${window.location.origin}?room=${roomCode}`
 
   const players = gameState?.players || []
@@ -30,6 +31,16 @@ export default function AdminPanel({ roomCode }) {
   const endGame = () => updateState({ action: 'end' })
   const resetGame = () => updateState({ action: 'reset' })
 
+  const copyRoomCode = async () => {
+    try {
+      await navigator.clipboard.writeText(roomCode)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    } catch {
+      setCopied(false)
+    }
+  }
+
   const roundAnswers = answers[currentRound] || {}
   const answerList = Object.values(roundAnswers)
   const revealedRound = currentRound < INSTRUMENT_ROUND_COUNT
@@ -49,9 +60,20 @@ export default function AdminPanel({ roomCode }) {
           <h1 className="text-2xl font-bold flex items-center gap-2"><Crown className="text-hunt-yellow" size={24} /> Admin Panel</h1>
           <p className="text-gray-400 text-sm">SoundHunt</p>
         </div>
-        <div className="card py-2 px-4 text-center">
-          <div className="text-xs text-gray-400">Room Code</div>
-          <div className="text-2xl font-mono font-bold text-hunt-cyan">{roomCode}</div>
+        <div className="card py-2 px-3 text-center">
+          <div className="text-xs text-gray-400">Join code for newcomers</div>
+          <div className="mt-1 flex items-center justify-center gap-2">
+            <div className="text-2xl font-mono font-bold tracking-widest text-hunt-cyan">{roomCode}</div>
+            <button
+              type="button"
+              onClick={copyRoomCode}
+              className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-100 hover:text-hunt-purple"
+              aria-label="Copy room code"
+              title={copied ? 'Copied' : 'Copy room code'}
+            >
+              <Clipboard size={16} />
+            </button>
+          </div>
         </div>
       </div>
 
