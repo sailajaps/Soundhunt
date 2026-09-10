@@ -146,6 +146,42 @@ export default function AdminPanel({ roomCode }) {
             onExpire={revealWhenTimerEnds}
           />
 
+          <div className="card space-y-4">
+            <div className="text-xs font-semibold uppercase tracking-wider text-hunt-cyan">
+              Question {currentRound + 1}
+            </div>
+            {currentRound < INSTRUMENT_ROUND_COUNT ? (
+              <>
+                <h2 className="text-2xl font-bold text-slate-900">{revealedRound?.title}</h2>
+                <p className="text-slate-600">{revealedRound?.description}</p>
+                <img
+                  src={revealedRound?.image}
+                  alt={revealedRound?.title}
+                  className="w-full rounded-2xl object-cover shadow-sm"
+                  style={{ aspectRatio: '4/3' }}
+                />
+                <p className="text-center text-sm font-medium text-slate-600">
+                  Click the instruments you can find before time runs out.
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-2xl font-bold text-slate-900">{revealedRound?.question}</h2>
+                <div className="rounded-2xl bg-slate-50 py-6 text-center text-5xl tracking-wider">
+                  {revealedRound?.emoji}
+                </div>
+                <audio className="w-full" controls preload="metadata" src={revealedRound?.audioUrl} />
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {revealedRound?.options?.map(option => (
+                    <div key={option} className="rounded-xl border border-hunt-border bg-white px-4 py-3 text-slate-800">
+                      {option}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
           {/* Leaderboard */}
           <div className="card">
             <Leaderboard players={players} title="Current Scores" />
