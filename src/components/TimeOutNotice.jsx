@@ -14,7 +14,7 @@ export default function TimeOutNotice({ passed }) {
         )}
         <div>
           <p className="font-bold text-slate-900">Time Ran Out!</p>
-          <p className="text-sm text-slate-600">{passed ? 'You passed this round.' : 'You failed this round.'}</p>
+          
         </div>
       </div>
     </div>

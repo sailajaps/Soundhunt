@@ -69,7 +69,7 @@ export const instrumentRounds = [
     id: 5,
     title: "The Orchestra Stage",
     description: "Scan the orchestra stage and click every instrument you can find.",
-    image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?w=1200&q=85",
     psychFact: "Listening to an orchestra combines melody, rhythm, and timbre into one rich auditory experience.",
     funFact: "A full orchestra may include more than 80 musicians.",
     surprisingFact: "Your brain separates many instruments playing at once into distinct sound streams.",
@@ -157,11 +157,11 @@ export const emojiRounds = [
   }
 ]
 
-export const ADMIN_PASSWORD = "soundhunt2024"
+export const ADMIN_PASSWORD = "1234"
 export const MAX_PLAYERS = 20
 export const INSTRUMENT_POINTS = 200
 export const EMOJI_POINTS = 300
-export const ROUND_TIMER = 45 // seconds
+export const ROUND_TIMER = 20 // seconds
 export const INSTRUMENT_ROUND_TIMER = 20
 export const INSTRUMENT_ROUND_COUNT = instrumentRounds.length
 export const TOTAL_ROUND_COUNT = instrumentRounds.length + emojiRounds.length
