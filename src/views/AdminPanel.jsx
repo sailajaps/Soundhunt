@@ -179,29 +179,10 @@ export default function AdminPanel({ roomCode }) {
       {/* Reveal Phase */}
       {phase === 'reveal' && (
         <div className="space-y-6">
-          <div className="card text-center">
-            <Lightbulb className="mx-auto mb-3 text-hunt-yellow" size={40} />
-            <h2 className="text-xl font-bold mb-2">Answer Revealed!</h2>
-            <p className="text-gray-400 text-sm">Host-only reveal: share the answer and facts when ready.</p>
-          </div>
-          <div className="card space-y-4">
+          <div className="card">
             <div>
               <div className="text-xs text-hunt-purple font-semibold mb-1">CORRECT ANSWER</div>
               <p className="text-lg font-bold text-slate-800">{revealedAnswer}</p>
-            </div>
-            <div className="card" style={{ border: '1px solid #7c3aed44', background: '#7c3aed11' }}>
-              <div className="text-xs text-hunt-purple font-semibold mb-2">Psychology Fact</div>
-              <p className="text-sm text-slate-700">{revealedRound?.psychFact}</p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="card" style={{ border: '1px solid #fbbf2444', background: '#fbbf2411' }}>
-                <div className="text-xs text-hunt-yellow font-semibold mb-2">Fun Fact</div>
-                <p className="text-sm text-slate-700">{revealedRound?.funFact}</p>
-              </div>
-              <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
-                <div className="text-xs text-hunt-cyan font-semibold mb-2">Surprising Fact</div>
-                <p className="text-sm text-slate-700">{revealedRound?.surprisingFact}</p>
-              </div>
             </div>
           </div>
           <div className="card">
