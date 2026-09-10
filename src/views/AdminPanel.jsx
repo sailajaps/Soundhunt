@@ -5,7 +5,7 @@ import Leaderboard from '../components/Leaderboard'
 import Confetti from '../components/Confetti'
 import { emojiRounds, instrumentRounds } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
-import { ArrowRight, Crown, Eye, Lightbulb, ListMusic, Play, RotateCcw, Search, Trophy } from 'lucide-react'
+import { ArrowRight, Crown, Lightbulb, ListMusic, Play, RotateCcw, Search, Trophy } from 'lucide-react'
 
 export default function AdminPanel({ roomCode }) {
   const { gameState, updateState } = useGameState(roomCode, 'admin')
@@ -182,7 +182,7 @@ export default function AdminPanel({ roomCode }) {
           <div className="card text-center">
             <Lightbulb className="mx-auto mb-3 text-hunt-yellow" size={40} />
             <h2 className="text-xl font-bold mb-2">Answer Revealed!</h2>
-            <p className="text-gray-400 text-sm">Players can see the answer and facts</p>
+            <p className="text-gray-400 text-sm">Host-only reveal: share the answer and facts when ready.</p>
           </div>
           <div className="card space-y-4">
             <div>
