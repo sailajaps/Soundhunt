@@ -1,6 +1,6 @@
 import Confetti from '../components/Confetti'
 import Leaderboard from '../components/Leaderboard'
-import { Brain, Heart, Moon, RotateCcw, Search, Trophy, Waves, Zap } from 'lucide-react'
+import { RotateCcw, Trophy } from 'lucide-react'
 
 export default function Winner({ players, isAdmin, onPlayAgain }) {
   const sorted = [...players].sort((a, b) => (b.score || 0) - (a.score || 0))
@@ -30,18 +30,6 @@ export default function Winner({ players, isAdmin, onPlayAgain }) {
         </div>
 
         <Leaderboard players={players} title="Final Standings" final />
-
-        <div className="card" style={{ border: '1px solid #06b6d444', background: '#06b6d411' }}>
-          <div className="text-sm font-semibold text-hunt-cyan mb-2 flex items-center gap-2"><Brain size={17} /> What you learned today</div>
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li className="flex items-center gap-2"><Search size={15} className="text-hunt-purple" /> Music therapy reduces anxiety by up to 65%</li>
-            <li className="flex items-center gap-2"><Brain size={15} className="text-hunt-purple" /> Playing music is the most whole-brain activity humans do</li>
-            <li className="flex items-center gap-2"><Heart size={15} className="text-hunt-pink" /> Live music releases oxytocin, the bonding hormone</li>
-            <li className="flex items-center gap-2"><Moon size={15} className="text-hunt-cyan" /> Binaural beats can shift your brain from alert to relaxed</li>
-            <li className="flex items-center gap-2"><Zap size={15} className="text-hunt-yellow" /> Music during exercise can boost endurance by 15%</li>
-            <li className="flex items-center gap-2"><Waves size={15} className="text-hunt-cyan" /> Minor keys mimic the acoustics of human crying</li>
-          </ul>
-        </div>
 
         {isAdmin && (
           <button onClick={onPlayAgain} className="w-full btn-secondary py-3">

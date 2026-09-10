@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+<rect width="1200" height="900" fill="#312e81"/><circle cx="250" cy="210" r="170" fill="#7c3aed" opacity=".5"/><circle cx="950" cy="250" r="190" fill="#ec4899" opacity=".45"/><rect y="620" width="1200" height="280" fill="#111827"/>
+<!-- guitar --> <path d="M275 500c-45-55 35-100 70-50 35-50 115-5 70 50 45 55-35 100-70 50-35 50-115 5-70-50z" fill="#f59e0b" stroke="#78350f" stroke-width="12"/><path d="M345 470l160-130" stroke="#78350f" stroke-width="28"/><path d="M495 335l45 45" stroke="#e5e7eb" stroke-width="25"/>
+<!-- mic --> <rect x="635" y="190" width="70" height="180" rx="35" fill="#334155" stroke="#e5e7eb" stroke-width="10"/><path d="M600 330a70 70 0 0 0 140 0" fill="none" stroke="#e5e7eb" stroke-width="12"/><path d="M670 400v100M620 500h100" stroke="#e5e7eb" stroke-width="12"/>
+<!-- sax --> <path d="M900 280v230c0 130-120 130-120 15v-55" fill="none" stroke="#fbbf24" stroke-width="32"/><path d="M900 280h75" stroke="#fbbf24" stroke-width="25"/><circle cx="860" cy="340" r="9" fill="#78350f"/><circle cx="860" cy="390" r="9" fill="#78350f"/><circle cx="860" cy="440" r="9" fill="#78350f"/>
+<!-- tambourine --> <circle cx="145" cy="610" r="90" fill="none" stroke="#f59e0b" stroke-width="22"/><circle cx="145" cy="520" r="18" fill="#f8fafc"/><circle cx="225" cy="565" r="18" fill="#f8fafc"/><circle cx="225" cy="655" r="18" fill="#f8fafc"/><circle cx="145" cy="700" r="18" fill="#f8fafc"/><circle cx="65" cy="655" r="18" fill="#f8fafc"/>
+<!-- spotlight --> <path d="M1030 90l100 40-180 210-45-20z" fill="#fde68a" opacity=".85"/>
+</svg>

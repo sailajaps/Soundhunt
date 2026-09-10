@@ -31,9 +31,6 @@ export default function Leaderboard({ players, title = "Leaderboard", final = fa
             <div className="text-2xl">{player.avatar}</div>
             <div className="flex-1 min-w-0">
               <div className="font-semibold truncate">{player.name}</div>
-              {player.streak > 1 && (
-                <div className="text-xs text-orange-400">{player.streak} streak</div>
-              )}
             </div>
             <div
               className="text-xl font-mono font-bold"

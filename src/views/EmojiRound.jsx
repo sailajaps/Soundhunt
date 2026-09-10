@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { emojiRounds, ROUND_TIMER, TOTAL_ROUND_COUNT } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
 import TimeOutNotice from '../components/TimeOutNotice'
@@ -15,6 +15,13 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
   const phase = gameState?.phase
   const revealed = phase === 'reveal' || phase === 'ended'
   const myScore = gameState?.players?.find(p => p.id === playerId)?.score || 0
+
+  useEffect(() => {
+    setGuess('')
+    setSubmitted(false)
+    setResult(null)
+    setTimeoutPassed(null)
+  }, [roundIndex])
 
   const handleExpire = () => {
     setTimeoutPassed(result === true)
@@ -64,8 +71,11 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
           <audio className="w-full max-w-sm mx-auto" controls preload="metadata" src={round.audioUrl}>
             Your browser does not support audio playback.
           </audio>
-          {!revealed && (
-            <p className="text-gray-500 text-xs mt-3">Listen to the music clue, then choose an answer.</p>
+          {revealed && (
+            <div className="card text-center">
+              <div className="font-semibold text-slate-900">Round complete</div>
+              <p className="mt-1 text-sm text-slate-600">Waiting for the host to start the next question.</p>
+            </div>
           )}
           {revealed && (
             <p className="mt-3 text-sm text-gray-600">The host is revealing the answer.</p>

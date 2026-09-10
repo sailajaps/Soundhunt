@@ -184,6 +184,13 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
             <span className="inline-flex items-center gap-2"><Check size={18} /> You found {submitted.length} instrument{submitted.length === 1 ? '' : 's'}! Keep looking...</span>
           </div>
         )}
+
+        {revealed && (
+          <div className="card text-center">
+            <div className="font-semibold text-slate-900">Round complete</div>
+            <p className="mt-1 text-sm text-slate-600">Waiting for the host to start the next question.</p>
+          </div>
+        )}
       </div>
     </div>
   )

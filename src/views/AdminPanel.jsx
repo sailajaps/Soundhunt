@@ -16,7 +16,6 @@ export default function AdminPanel({ roomCode }) {
   const players = gameState?.players || []
   const phase = gameState?.phase || 'lobby'
   const currentRound = gameState?.currentRound || 0
-  const answers = gameState?.answers || {}
 
   useEffect(() => {
     if (phase === 'lobby') setTab('lobby')
@@ -41,8 +40,6 @@ export default function AdminPanel({ roomCode }) {
     }
   }
 
-  const roundAnswers = answers[currentRound] || {}
-  const answerList = Object.values(roundAnswers)
   const revealedRound = currentRound < INSTRUMENT_ROUND_COUNT
     ? instrumentRounds[currentRound]
     : emojiRounds[currentRound - 3]
@@ -147,29 +144,6 @@ export default function AdminPanel({ roomCode }) {
             running={phase === 'playing'}
             onExpire={revealWhenTimerEnds}
           />
-
-          {/* Player Answers Live */}
-          <div className="card">
-            <h3 className="font-semibold mb-3">
-              Live Answers
-              <span className="text-gray-400 text-sm ml-2">({answerList.length}/{players.length})</span>
-            </h3>
-            {answerList.length === 0 ? (
-              <p className="text-gray-500 text-sm">Waiting for answers...</p>
-            ) : (
-              <div className="space-y-2">
-                {answerList.map((a, i) => (
-                  <div key={i} className="flex items-center gap-3 bg-hunt-bg px-3 py-2 rounded-xl">
-                    <span>{a.avatar}</span>
-                    <span className="font-medium flex-1">{a.name}</span>
-                    <span className="text-sm text-gray-400">{a.answer}</span>
-                    {a.correct && <span className="text-green-400">✓</span>}
-                    {a.points > 0 && <span className="text-hunt-yellow font-mono text-sm">+{a.points}</span>}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
 
           {/* Leaderboard */}
           <div className="card">
