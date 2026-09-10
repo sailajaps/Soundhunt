@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
-<rect width="1200" height="900" fill="#fef3c7"/><rect y="610" width="1200" height="290" fill="#92400e"/><circle cx="600" cy="310" r="230" fill="#fde68a" stroke="#f59e0b" stroke-width="16"/>
-<!-- violin --> <path d="M245 300c-38-42 18-80 50-42 32-38 88 0 50 42 38 42-18 80-50 42-32 38-88 0-50-42z" fill="#b45309" stroke="#78350f" stroke-width="10"/><path d="M295 278L390 170" stroke="#78350f" stroke-width="22"/><path d="M382 160l35 32" stroke="#334155" stroke-width="20"/>
-<!-- trumpet --> <path d="M620 180h190v55H620z" fill="#f59e0b" stroke="#92400e" stroke-width="10"/><path d="M810 178c100 0 100 90 0 90" fill="none" stroke="#f59e0b" stroke-width="28"/><circle cx="660" cy="270" r="18" fill="#334155"/><circle cx="710" cy="270" r="18" fill="#334155"/><circle cx="760" cy="270" r="18" fill="#334155"/>
-<!-- flute --> <path d="M850 520l230-90" stroke="#64748b" stroke-width="24"/><circle cx="910" cy="497" r="9" fill="#f8fafc"/><circle cx="960" cy="478" r="9" fill="#f8fafc"/><circle cx="1010" cy="458" r="9" fill="#f8fafc"/>
-<!-- cymbal --> <ellipse cx="160" cy="665" rx="95" ry="22" fill="#fbbf24" stroke="#92400e" stroke-width="10"/><path d="M160 665v160" stroke="#78350f" stroke-width="12"/><circle cx="160" cy="665" r="15" fill="#92400e"/>
-<!-- music stand --> <path d="M570 680L500 820M570 680l70 140M570 680v140" stroke="#334155" stroke-width="15"/><path d="M510 570h120v120H510z" fill="#1e293b"/><path d="M530 590h80v80h-80z" fill="#f8fafc"/>
-</svg>

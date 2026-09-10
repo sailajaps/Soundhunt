@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
-<rect width="1200" height="900" fill="#fce7f3"/><rect y="700" width="1200" height="200" fill="#78350f"/><path d="M0 180h1200" stroke="#be123c" stroke-width="30"/><circle cx="600" cy="230" r="150" fill="#fda4af" opacity=".55"/>
-<!-- violin --> <path d="M180 330c-38-42 18-80 50-42 32-38 88 0 50 42 38 42-18 80-50 42-32 38-88 0-50-42z" fill="#a16207" stroke="#713f12" stroke-width="10"/><path d="M230 308l110-110" stroke="#713f12" stroke-width="22"/><path d="M330 195l35 32" stroke="#334155" stroke-width="20"/>
-<!-- cello --> <path d="M420 560c-55-65 35-120 78-62 43-58 133-3 78 62 55 65-35 120-78 62-43 58-133 3-78-62z" fill="#92400e" stroke="#451a03" stroke-width="12"/><path d="M498 525L590 300" stroke="#451a03" stroke-width="30"/><path d="M575 290l45 45" stroke="#334155" stroke-width="25"/>
-<!-- horn --> <path d="M650 260h180v55H650z" fill="#f59e0b" stroke="#92400e" stroke-width="10"/><path d="M830 258c105 0 105 95 0 95" fill="none" stroke="#f59e0b" stroke-width="28"/><circle cx="700" cy="350" r="18" fill="#334155"/><circle cx="755" cy="350" r="18" fill="#334155"/><circle cx="800" cy="350" r="18" fill="#334155"/>
-<!-- flute --> <path d="M820 560l240-95" stroke="#64748b" stroke-width="25"/><circle cx="880" cy="536" r="9" fill="#f8fafc"/><circle cx="935" cy="515" r="9" fill="#f8fafc"/><circle cx="990" cy="495" r="9" fill="#f8fafc"/>
-<!-- percussion --> <ellipse cx="1060" cy="690" rx="90" ry="25" fill="#fbbf24" stroke="#92400e" stroke-width="10"/><path d="M1060 690v145" stroke="#78350f" stroke-width="12"/><circle cx="1060" cy="690" r="16" fill="#92400e"/>
-</svg>
