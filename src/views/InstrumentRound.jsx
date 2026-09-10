@@ -31,7 +31,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
   }
 
   const handleTap = (e) => {
-    if (revealed) return
+    if (phase !== 'playing' || revealed || !imgRef.current) return
     const rect = imgRef.current.getBoundingClientRect()
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
@@ -87,13 +87,16 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
         <p className="text-gray-400 text-sm">{round.description}</p>
 
         {/* Image with hotspots */}
-        <div className="relative rounded-2xl overflow-hidden cursor-crosshair shadow-lg" style={{ aspectRatio: '16/9' }}>
+        <div
+          className="relative w-full rounded-2xl overflow-hidden cursor-crosshair shadow-lg select-none"
+          style={{ aspectRatio: '16/9', touchAction: 'none' }}
+        >
           <img
             ref={imgRef}
             src={round.image}
             alt={round.title}
-            className="w-full h-full object-cover"
-            onClick={handleTap}
+            className="w-full h-full object-cover select-none"
+            onPointerDown={handleTap}
             draggable={false}
           />
 
