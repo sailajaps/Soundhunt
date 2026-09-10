@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { INSTRUMENT_ROUND_TIMER, instrumentRounds } from '../data/gameData'
 import TimerBar from '../components/TimerBar'
 import TimeOutNotice from '../components/TimeOutNotice'
-import { Brain, Check, Music2, Sparkles, Zap } from 'lucide-react'
+import { Brain, Check, Maximize2, Minus, Music2, Plus, Sparkles, Zap } from 'lucide-react'
 
 export default function InstrumentRound({ roundIndex, playerId, playerAvatar, playerName, onAnswer, onRoundExpire, gameState, isAdmin }) {
   const round = instrumentRounds[roundIndex]
@@ -10,7 +10,9 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
   const [submitted, setSubmitted] = useState([])
   const [showResult, setShowResult] = useState(null)
   const [timeoutPassed, setTimeoutPassed] = useState(null)
+  const [zoom, setZoom] = useState(1)
   const imgRef = useRef(null)
+  const imageFrameRef = useRef(null)
 
   const phase = gameState?.phase
   const revealed = phase === 'reveal' || phase === 'ended'
@@ -22,6 +24,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
     setSubmitted([])
     setShowResult(null)
     setTimeoutPassed(null)
+    setZoom(1)
   }, [roundIndex])
 
   const handleExpire = () => {
@@ -32,9 +35,9 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
 
   const handleTap = (e) => {
     if (phase !== 'playing' || revealed || !imgRef.current) return
-    const rect = imgRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
+    const rect = imageFrameRef.current.getBoundingClientRect()
+    const x = (((e.clientX - rect.left - rect.width / 2) / zoom) + rect.width / 2) / rect.width * 100
+    const y = (((e.clientY - rect.top - rect.height / 2) / zoom) + rect.height / 2) / rect.height * 100
 
     // Check proximity to any hotspot (within 10% radius)
     for (const inst of round.instruments) {
@@ -86,8 +89,43 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
 
         <p className="text-gray-400 text-sm">{round.description}</p>
 
+        <div className="flex items-center justify-end gap-2" aria-label="Image zoom controls">
+          <button
+            type="button"
+            onClick={() => setZoom(value => Math.max(1, value - 0.25))}
+            disabled={zoom <= 1}
+            className="btn-secondary p-2 disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Zoom out"
+            title="Zoom out"
+          >
+            <Minus size={17} />
+          </button>
+          <span className="min-w-14 text-center text-sm font-mono text-slate-600">{Math.round(zoom * 100)}%</span>
+          <button
+            type="button"
+            onClick={() => setZoom(value => Math.min(2.5, value + 0.25))}
+            disabled={zoom >= 2.5}
+            className="btn-secondary p-2 disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Zoom in"
+            title="Zoom in"
+          >
+            <Plus size={17} />
+          </button>
+          <button
+            type="button"
+            onClick={() => setZoom(1)}
+            disabled={zoom === 1}
+            className="btn-secondary p-2 disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Reset image zoom"
+            title="Reset zoom"
+          >
+            <Maximize2 size={17} />
+          </button>
+        </div>
+
         {/* Image with hotspots */}
         <div
+          ref={imageFrameRef}
           className="relative w-full rounded-2xl overflow-hidden cursor-crosshair shadow-lg select-none"
           style={{ aspectRatio: '16/9', touchAction: 'none' }}
         >
@@ -96,6 +134,7 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
             src={round.image}
             alt={round.title}
             className="w-full h-full object-cover select-none"
+            style={{ transform: `scale(${zoom})`, transformOrigin: 'center', transition: 'transform 180ms ease-out' }}
             onPointerDown={handleTap}
             draggable={false}
           />
