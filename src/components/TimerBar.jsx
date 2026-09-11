@@ -14,8 +14,10 @@ export default function TimerBar({ duration, onExpire, running, resetKey, startT
     setTimeLeft(duration)
     expiredRef.current = false
     localStartRef.current = startTime || Date.now()
-    if (!running) return
+  }, [duration, resetKey, startTime])
 
+  useEffect(() => {
+    if (!running) return
     const update = () => {
       const elapsed = Math.floor((Date.now() - localStartRef.current) / 1000)
       const remaining = Math.max(0, duration - elapsed)
@@ -29,7 +31,7 @@ export default function TimerBar({ duration, onExpire, running, resetKey, startT
     update()
     const interval = setInterval(update, 250)
     return () => clearInterval(interval)
-  }, [duration, resetKey, running, startTime])
+  }, [duration, running])
 
   const pct = (timeLeft / duration) * 100
   const color = pct > 50 ? '#10b981' : pct > 25 ? '#fbbf24' : '#ef4444'

@@ -26,7 +26,6 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
   const handleExpire = () => {
     setTimeoutPassed(result === true)
     setTimeout(() => setTimeoutPassed(null), 4000)
-    onRoundExpire()
   }
 
   const handleSubmit = () => {

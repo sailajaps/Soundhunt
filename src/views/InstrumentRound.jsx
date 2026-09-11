@@ -30,7 +30,6 @@ export default function InstrumentRound({ roundIndex, playerId, playerAvatar, pl
   const handleExpire = () => {
     setTimeoutPassed(submitted.length > 0)
     setTimeout(() => setTimeoutPassed(null), 4000)
-    onRoundExpire()
   }
 
   const handleTap = (e) => {

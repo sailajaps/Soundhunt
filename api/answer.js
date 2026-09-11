@@ -22,6 +22,7 @@ export default async function handler(req, res) {
   const updated = { ...state }
   if (!updated.preferences) updated.preferences = {}
   if (!updated.answers) updated.answers = {}
+  if (!updated.roundScores) updated.roundScores = {}
   if (!updated.foundInstruments) updated.foundInstruments = {}
 
   let pointsEarned = 0
@@ -38,6 +39,9 @@ export default async function handler(req, res) {
   if (roundIndex !== undefined && !updated.answers[roundIndex]) {
     updated.answers[roundIndex] = {}
   }
+  if (roundIndex !== undefined && !updated.roundScores[roundIndex]) {
+    updated.roundScores[roundIndex] = {}
+  }
 
   // Instrument round (rounds 0-2)
   if (instrumentId) {
@@ -49,6 +53,8 @@ export default async function handler(req, res) {
     // Mark instrument as found
     updated.foundInstruments[instrumentId] = { playerId, playerName }
     pointsEarned = INSTRUMENT_POINTS
+
+    updated.roundScores[roundIndex][playerId] = (updated.roundScores[roundIndex][playerId] || 0) + pointsEarned
 
     updated.answers[roundIndex][playerId] = {
       name: playerName,
@@ -73,6 +79,8 @@ export default async function handler(req, res) {
     if (correct && !alreadyCorrect) {
       pointsEarned = EMOJI_POINTS
     }
+
+    updated.roundScores[roundIndex][playerId] = pointsEarned
 
     updated.answers[roundIndex][playerId] = {
       name: playerName,

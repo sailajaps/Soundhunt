@@ -16,6 +16,7 @@ export default function AdminPanel({ roomCode }) {
   const players = gameState?.players || []
   const phase = gameState?.phase || 'lobby'
   const currentRound = gameState?.currentRound || 0
+  const roundScores = gameState?.roundScores?.[currentRound] || {}
 
   useEffect(() => {
     if (phase === 'lobby') setTab('lobby')
@@ -26,7 +27,6 @@ export default function AdminPanel({ roomCode }) {
   const startGame = () => updateState({ action: 'start' })
   const nextRound = () => updateState({ action: 'nextRound' })
   const revealAnswer = () => updateState({ action: 'reveal' })
-  const revealWhenTimerEnds = () => updateState({ action: 'reveal' })
   const endGame = () => updateState({ action: 'end' })
   const resetGame = () => updateState({ action: 'reset' })
 
@@ -42,10 +42,14 @@ export default function AdminPanel({ roomCode }) {
 
   const revealedRound = currentRound < INSTRUMENT_ROUND_COUNT
     ? instrumentRounds[currentRound]
-    : emojiRounds[currentRound - 3]
+    : emojiRounds[currentRound - INSTRUMENT_ROUND_COUNT]
   const revealedAnswer = currentRound < INSTRUMENT_ROUND_COUNT
     ? revealedRound?.instruments.map(instrument => instrument.name).join(' · ')
     : revealedRound?.answer
+  const highestRoundScore = Math.max(0, ...Object.values(roundScores))
+  const roundWinners = highestRoundScore > 0
+    ? players.filter(player => roundScores[player.id] === highestRoundScore)
+    : []
 
   return (
     <div className="min-h-screen p-4 max-w-2xl mx-auto">
@@ -143,7 +147,6 @@ export default function AdminPanel({ roomCode }) {
             resetKey={currentRound}
             startTime={gameState?.roundStartedAt}
             running={phase === 'playing'}
-            onExpire={revealWhenTimerEnds}
           />
 
           <div className="card space-y-4">
@@ -220,6 +223,20 @@ export default function AdminPanel({ roomCode }) {
           </div>
           <div className="card">
             <Leaderboard players={players} title={`Scores After Round ${currentRound + 1}`} />
+          </div>
+          <div className="card">
+            <div className="text-xs font-semibold uppercase tracking-wider text-hunt-purple">Question Winners</div>
+            {roundWinners.length > 0 ? (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {roundWinners.map(player => (
+                  <span key={player.id} className="rounded-xl bg-purple-50 px-3 py-2 font-semibold text-slate-800">
+                    {player.name} · {highestRoundScore} pts
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-2 text-sm text-slate-600">No points scored this question.</p>
+            )}
           </div>
           <div className="grid grid-cols-2 gap-3">
             {currentRound < TOTAL_ROUND_COUNT - 1 ? (
