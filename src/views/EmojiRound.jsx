@@ -11,6 +11,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
   const [submitted, setSubmitted] = useState(false)
   const [result, setResult] = useState(null)
   const [timeoutPassed, setTimeoutPassed] = useState(null)
+  const [roundExpired, setRoundExpired] = useState(false)
 
   const phase = gameState?.phase
   const revealed = phase === 'reveal' || phase === 'ended'
@@ -21,15 +22,17 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
     setSubmitted(false)
     setResult(null)
     setTimeoutPassed(null)
+    setRoundExpired(false)
   }, [roundIndex])
 
   const handleExpire = () => {
+    setRoundExpired(true)
     setTimeoutPassed(result === true)
     setTimeout(() => setTimeoutPassed(null), 4000)
   }
 
   const handleSubmit = () => {
-    if (!guess.trim() || submitted) return
+    if (!guess.trim() || submitted || roundExpired || phase !== 'playing') return
     const correct = round.acceptedAnswers.some(
       a => a.toLowerCase() === guess.trim().toLowerCase()
     )
@@ -82,7 +85,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
         </div>
 
         {/* Input */}
-        {!submitted && !revealed && (
+        {!submitted && !revealed && !roundExpired && (
           <div className="space-y-3">
             <div className="grid gap-2">
               {round.options.map(option => (
@@ -130,7 +133,7 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
 
         {/* Psych Fact on reveal */}
         {/* Hint */}
-        {!submitted && !revealed && (
+        {!submitted && !revealed && !roundExpired && (
           <div className="text-center">
             <p className="text-gray-600 text-xs">Hint: {round.hint}</p>
           </div>

@@ -2,6 +2,7 @@ import { kv } from '@vercel/kv'
 
 const INSTRUMENT_POINTS = 200
 const EMOJI_POINTS = 300
+const ROUND_TIMER = 20
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -18,6 +19,14 @@ export default async function handler(req, res) {
 
   const state = await kv.get(`game:${room}`)
   if (!state) return res.status(404).json({ error: 'Room not found' })
+
+  if (roundIndex !== undefined) {
+    const roundIsActive = state.phase === 'playing' && state.currentRound === roundIndex
+    const roundHasTimeLeft = state.roundStartedAt && Date.now() - state.roundStartedAt < ROUND_TIMER * 1000
+    if (!roundIsActive || !roundHasTimeLeft) {
+      return res.status(409).json({ success: false, message: 'Round has ended', points: 0 })
+    }
+  }
 
   const updated = { ...state }
   if (!updated.preferences) updated.preferences = {}

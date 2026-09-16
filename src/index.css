@@ -9,7 +9,13 @@
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  background: #f5f7fb;
+  background-color: #eef2f5;
+  background-image:
+    linear-gradient(rgba(30, 41, 59, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 41, 59, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, #eef2f5 0%, #f8fafb 52%, #f4f1eb 100%);
+  background-size: 32px 32px, 32px 32px, 100% 100%;
+  background-attachment: fixed;
   color: #172033;
   min-height: 100vh;
 }
