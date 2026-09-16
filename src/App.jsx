@@ -40,6 +40,7 @@ export default function App() {
   }
 
   const handleAnswer = async (answerData) => {
+    const isRoundAnswer = answerData.guess !== undefined || answerData.instrumentId !== undefined
     await fetch('/api/answer', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -48,7 +49,7 @@ export default function App() {
         playerId,
         playerName,
         playerAvatar,
-        roundIndex: gameState.currentRound,
+        ...(isRoundAnswer ? { roundIndex: gameState.currentRound } : {}),
         ...answerData
       })
     })
@@ -86,6 +87,7 @@ export default function App() {
           avatar={playerAvatar}
           players={players}
           roomCode={roomCode}
+          score={players.find(player => player.id === playerId)?.score || 0}
           preferenceAnswered={Boolean(gameState.preferences?.[playerId])}
           onPreference={handlePreference}
         />

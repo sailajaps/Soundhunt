@@ -1,7 +1,7 @@
 import MusicPreference from '../components/MusicPreference'
 import { ListMusic, Search, Target } from 'lucide-react'
 
-export default function PlayerLobby({ name, avatar, players = [], roomCode, preferenceAnswered, onPreference }) {
+export default function PlayerLobby({ name, avatar, players = [], roomCode, score = 0, preferenceAnswered, onPreference }) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-sm space-y-6">
@@ -14,6 +14,7 @@ export default function PlayerLobby({ name, avatar, players = [], roomCode, pref
         <div className="card text-center">
           <div className="text-xs text-gray-400 mb-1">Room Code</div>
           <div className="text-4xl font-mono font-bold text-hunt-cyan">{roomCode}</div>
+          <div className="mt-3 text-sm text-gray-500">Score: <span className="font-mono font-bold text-hunt-yellow">{score}</span></div>
         </div>
 
         <MusicPreference answered={preferenceAnswered} onAnswer={onPreference} />
