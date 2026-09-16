@@ -70,9 +70,6 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
           style={{ background: 'linear-gradient(135deg, #7c3aed11, #ec489911)' }}
         >
           <div className="text-6xl mb-3 tracking-wider">{round.emoji}</div>
-          <audio className="w-full max-w-sm mx-auto" controls preload="metadata" src={round.audioUrl}>
-            Your browser does not support audio playback.
-          </audio>
           {revealed && (
             <div className="card text-center">
               <div className="font-semibold text-slate-900">Round complete</div>
@@ -81,6 +78,12 @@ export default function EmojiRound({ roundIndex, playerId, onAnswer, onRoundExpi
           )}
           {revealed && (
             <p className="mt-3 text-sm text-gray-600">The host is revealing the answer.</p>
+          )}
+          {(roundExpired || revealed) && (
+            <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-left">
+              <div className="text-xs font-semibold uppercase tracking-wider text-emerald-700">Correct answer</div>
+              <div className="mt-1 font-bold text-emerald-900">{round.answer}</div>
+            </div>
           )}
         </div>
 
